@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] Dialogue[] dialogues;
+    [SerializeField] Dialogue dialogue;
     [SerializeField] int effectTextIndex;
 
     private int i = 0;
@@ -23,11 +23,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public virtual void TriggerDialogue(int dialogueIndex)
     {
-        DialogueManager.Instance.SetActiveTextInScene(effectTextIndex);
-        DialogueManager.Instance.StartDialogue(dialogues[dialogueIndex]);
+        DialogueManager.Instance.StartDialogue(dialogue, effectTextIndex);
     }
-
-
 
 
 

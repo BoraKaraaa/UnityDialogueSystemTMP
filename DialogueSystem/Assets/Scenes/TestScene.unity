@@ -284,8 +284,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a3d287b9aab183d4184063fdb866f207, type: 2}
+  m_sharedMaterial: {fileID: 762700053940112406, guid: a3d287b9aab183d4184063fdb866f207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -632,7 +632,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueHolders:
-  - {fileID: 1561079147}
+  - {fileID: 1561079145}
+  fastWriteSpeed: 0.04
+  startDialogueAnimationStateName: 
+  endDialogueAnimationStateName: 
 --- !u!1 &1527106914
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1561079146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -754,6 +757,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueHolderText: {fileID: 447500067}
   dialogueHolderImage: {fileID: 1833391770}
+  A: 0
+  B: 0
+  C: 0
+  D: 0
+  E: 0
+  F: 0
 --- !u!1 &1597627279
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,8 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b834bcd34b005654eb0d5354dfbde439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues:
-  - {fileID: 11400000, guid: 8f37880d63560eb4c86bb536f7392aff, type: 2}
+  dialogue: {fileID: 11400000, guid: 8f37880d63560eb4c86bb536f7392aff, type: 2}
   effectTextIndex: 0
 --- !u!224 &1833391769 stripped
 RectTransform:
