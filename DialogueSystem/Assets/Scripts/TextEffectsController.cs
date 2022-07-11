@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TextEffectsController : MonoBehaviour
@@ -8,8 +7,6 @@ public class TextEffectsController : MonoBehaviour
     public static TextEffectsController Instance { get { return _instance; } }
 
     private const int TMP_PRO_VERTICES = 4;
-
-    private ETextEffects textEffect = ETextEffects.None;
 
     //private int wordColorIndex = 0;
     private int k = 1;
@@ -68,7 +65,7 @@ public class TextEffectsController : MonoBehaviour
     }
     */
 
-    public void DoTextEffect(TMP_Text dialogueHolderText)
+    public void DoTextEffect(TMP_Text dialogueHolderText, ETextEffects textEffect)
     {
 
         dialogueHolderText.ForceMeshUpdate();
@@ -88,6 +85,8 @@ public class TextEffectsController : MonoBehaviour
                 WiggleTextEffect(verts, charInfo);
             else if (textEffect == ETextEffects.Vibration)
                 VibrationTextEffect(verts, charInfo);
+            else if (textEffect == ETextEffects.VibrationV2)
+                VibrationTextEffectV2(verts, charInfo);
             else if (textEffect == ETextEffects.Rage)
                 RageTextEffect(verts, charInfo);
             else if (textEffect == ETextEffects.Glitch)
@@ -115,11 +114,6 @@ public class TextEffectsController : MonoBehaviour
 
     }
 
-    public void SetEtextEffects(ETextEffects textEffect)
-    {
-        this.textEffect = textEffect;
-    }
-
     private void WiggleTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
         k *= -1;
@@ -139,6 +133,17 @@ public class TextEffectsController : MonoBehaviour
         {
             var orig = verts[charInfo.vertexIndex + j];
             verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 80) * 0.6f * k, Mathf.Sin(Time.time * 60) * 0.6f * k, 0);
+        }
+    }
+
+    private void VibrationTextEffectV2(Vector3[] verts, TMP_CharacterInfo charInfo)
+    {
+        k *= -1;
+
+        for (int j = 0; j < TMP_PRO_VERTICES; j++)
+        {
+            var orig = verts[charInfo.vertexIndex + j];
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 2 + orig.x * 2) * 3 * k, Mathf.Sin(Time.time * 3 + orig.x * 1.5f) * 4 * k, 0);
         }
     }
 
@@ -197,7 +202,7 @@ public class TextEffectsController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Log(Time.time * A + orig.x * B) * C * k, Mathf.Log(Time.time * D + orig.x * E) * F * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * A + orig.x * B) * C * k, Mathf.Sin(Time.time * D + orig.x * E) * F * k, 0);
         }
     }
 

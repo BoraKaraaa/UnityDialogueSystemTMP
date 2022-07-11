@@ -1,18 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public abstract class DialogueHolder : MonoBehaviour
 {
 
     public TMP_Text dialogueHolderText;
-    private ETextEffects textEffect = ETextEffects.None;
+    protected ETextEffects textEffect = ETextEffects.None;
 
-    private void Start()
+    public void SubsActions()
     {
         DialogueManager.Instance.OnStartDialogueActions += OnStartDialogueActions;
         DialogueManager.Instance.OnCustomDialogueActions += OnCustomDialogueActions;
         DialogueManager.Instance.OnEndDialogueActions += OnEndDialogueActions;
+    }
+
+    public void UnSubsActions()
+    {
+        DialogueManager.Instance.OnStartDialogueActions -= OnStartDialogueActions;
+        DialogueManager.Instance.OnCustomDialogueActions -= OnCustomDialogueActions;
+        DialogueManager.Instance.OnEndDialogueActions -= OnEndDialogueActions;
     }
 
     private void OnDestroy()
@@ -22,32 +28,12 @@ public abstract class DialogueHolder : MonoBehaviour
         DialogueManager.Instance.OnEndDialogueActions -= OnEndDialogueActions;
     }
 
-    public virtual void Update()
-    {
-        if(textEffect != ETextEffects.None)
-            TextEffectsController.Instance.DoTextEffect(dialogueHolderText);
-    }
+    public void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
 
-    public void SetEtextEffects(ETextEffects textEffect)
-    {
-        TextEffectsController.Instance.SetEtextEffects(textEffect);
-        this.textEffect = textEffect;
-    }
+    public abstract void OnStartDialogueActions(Dialogue dialogue);
+    public abstract OneDialogue OnCustomDialogueActions();
+    public abstract void OnEndDialogueActions();
 
-    public virtual void OnStartDialogueActions()
-    {
-
-    }
-
-    public virtual void OnCustomDialogueActions()
-    {
-
-    }
-
-    public virtual void OnEndDialogueActions()
-    {
-
-    }
 
 
 }

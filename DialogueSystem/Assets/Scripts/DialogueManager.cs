@@ -9,11 +9,9 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance { get { return _instance; } }
 
     [SerializeField] private DialogueHolder[] dialogueHolders;
-    private DialogueHolder activeDialogueHolder;
+    public DialogueHolder activeDialogueHolder;
 
-    private Queue<OneDialogue> oneDialogueQue;
-
-    private int dialogueIndex;
+    public Queue<OneDialogue> oneDialogueQue;
 
     [SerializeField] private float fastWriteSpeed = 0.04f;
     private bool isCoroutineEnd = true;
@@ -22,8 +20,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private string startDialogueAnimationStateName;
     [SerializeField] private string endDialogueAnimationStateName;
 
-    public Action OnStartDialogueActions;
-    public Action OnCustomDialogueActions;
+    public Action<Dialogue> OnStartDialogueActions;
+    public Func<OneDialogue> OnCustomDialogueActions;
     public Action OnEndDialogueActions;
 
     private void Awake()
@@ -44,19 +42,13 @@ public class DialogueManager : MonoBehaviour
 
         SetActiveTextInScene(activeTextIndexInScene);
 
-        OnStartDialogueActions?.Invoke();
-        StartDialogueCustomActions();
+        if (activeDialogueHolder.GetComponent<Animator>() != null)
+            activeDialogueHolder.GetComponent<Animator>().Play(startDialogueAnimationStateName, 0);
 
         oneDialogueQue.Clear();
-        dialogueIndex = 0;
 
-        foreach (string sentence in dialogue.sentences)
-        {
-            oneDialogueQue.Enqueue(new OneDialogue(dialogue.charcterName, dialogue.sentences[dialogueIndex], dialogue.images[dialogueIndex], 
-                dialogue.textWriteSpeeds[dialogueIndex], dialogue.textAudios[dialogueIndex], dialogue.textEffects[dialogueIndex]));
-
-            dialogueIndex++;
-        }
+        OnStartDialogueActions?.Invoke(dialogue);
+        StartDialogueCustomActions();
 
         DisplayNextSentence();
 
@@ -77,23 +69,18 @@ public class DialogueManager : MonoBehaviour
             return; 
         }
 
-        OneDialogue currDialogue = oneDialogueQue.Dequeue();
-
-        activeDialogueHolder.SetEtextEffects(currDialogue.textEffects);
-
-        activeDialogueHolder.dialogueHolderImage.sprite = currDialogue.image.sprite;
-
-        if (currDialogue.image.GetComponent<Animator>() != null)
-            currDialogue.image.GetComponent<Animator>().enabled = true;
+        OneDialogue newOneDialogue =  OnCustomDialogueActions?.Invoke();
 
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(currDialogue));
+        StartCoroutine(TypeSentence(newOneDialogue));
 
     }
 
     IEnumerator TypeSentence(OneDialogue currDialogue)
     {
-        activeDialogueHolder.dialogueHolderText.text = String.Empty;
+        if(!currDialogue.overWrite)
+            activeDialogueHolder.dialogueHolderText.text = String.Empty;
+
         isCoroutineEnd = false;
 
         AudioSource newAudioSource = Instantiate(currDialogue.textAudio, transform.position, Quaternion.identity);
@@ -132,15 +119,25 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
 
+        if (activeDialogueHolder.GetComponent<Animator>() != null)
+            activeDialogueHolder.GetComponent<Animator>().Play(endDialogueAnimationStateName, 0);
+
         OnEndDialogueActions?.Invoke();
         EndDialogueCustomActions();
 
     }
 
-
     private void SetActiveTextInScene(int index)
     {
         activeDialogueHolder = dialogueHolders[index];
+        activeDialogueHolder.SubsActions();
+
+        for(int i = 0; i < dialogueHolders.Length; i++)
+        {
+            if (i != index)
+                dialogueHolders[i].UnSubsActions();
+        }
+            
     }
 
     private void EndDialogueCustomActions() { }
