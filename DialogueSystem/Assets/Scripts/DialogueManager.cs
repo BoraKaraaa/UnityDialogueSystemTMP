@@ -54,7 +54,7 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    public void DisplayNextSentence() // Reference with clicking or Button Push
+    public void DisplayNextSentence()
     {
 
         if (isCoroutineEnd == false)
@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in currDialogue.sentence)
         {
 
-            activeDialogueHolder.dialogueHolderText.text += letter; // her char basildigiginda effect calismiyor
+            activeDialogueHolder.dialogueHolderText.text += letter; 
 
             if (letter != ' ')
             {

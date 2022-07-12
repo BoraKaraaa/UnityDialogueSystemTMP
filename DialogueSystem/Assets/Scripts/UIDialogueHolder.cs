@@ -3,12 +3,19 @@ using UnityEngine.UI;
 
 public class UIDialogueHolder : DialogueHolder
 {
-    public Image dialogueHolderImage;
+    [SerializeField] private Image dialogueHolderImage;
+
+    private Color color = Color.white;
+    private int diffColorWordIndex = -1; 
     
     public void Update()
     {
         if (textEffect != ETextEffects.None)
             TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
+
+        if (diffColorWordIndex != -1)
+            TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
+
     }
 
     public override void OnStartDialogueActions(Dialogue dialogue)
@@ -21,7 +28,7 @@ public class UIDialogueHolder : DialogueHolder
         {
             DialogueManager.Instance.oneDialogueQue.Enqueue(new UIOneDialogue(dialogue.characterName, dialogue.sentences[dialogueIndex],
                 dialogue.textWriteSpeeds[dialogueIndex], dialogue.textAudios[dialogueIndex], dialogue.textEffects[dialogueIndex], dialogue.overWrite[dialogueIndex],
-                ((UIDialogue)dialogue).images[dialogueIndex]));
+                ((UIDialogue)dialogue).images[dialogueIndex], ((UIDialogue)dialogue).diffColorWordIndex[dialogueIndex], ((UIDialogue)dialogue).diffColor[dialogueIndex]));
 
             dialogueIndex++;
         }
@@ -29,9 +36,12 @@ public class UIDialogueHolder : DialogueHolder
 
     public override OneDialogue OnCustomDialogueActions()
     {
-       UIOneDialogue newUIOneDialogue =  DialogueManager.Instance.oneDialogueQue.Dequeue() as UIOneDialogue;
+        UIOneDialogue newUIOneDialogue =  DialogueManager.Instance.oneDialogueQue.Dequeue() as UIOneDialogue;
 
-       dialogueHolderImage.sprite = newUIOneDialogue.image.sprite;
+        dialogueHolderImage.sprite = newUIOneDialogue.image.sprite;
+
+        diffColorWordIndex = newUIOneDialogue.diffColorWordIndex;
+        color = newUIOneDialogue.diffColor;
 
         SetEtextEffects(newUIOneDialogue.textEffects);
 
@@ -45,8 +55,6 @@ public class UIDialogueHolder : DialogueHolder
     {
         this.gameObject.SetActive(false);
     }
-
-
 
 
 }

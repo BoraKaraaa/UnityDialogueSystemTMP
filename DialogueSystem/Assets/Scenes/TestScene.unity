@@ -633,7 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueHolders:
   - {fileID: 1561079147}
-  activeDialogueHolder: {fileID: 0}
+  activeDialogueHolder: {fileID: 1561079147}
   fastWriteSpeed: 0.04
   startDialogueAnimationStateName: 
   endDialogueAnimationStateName: 

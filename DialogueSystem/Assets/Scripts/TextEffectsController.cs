@@ -8,22 +8,8 @@ public class TextEffectsController : MonoBehaviour
 
     private const int TMP_PRO_VERTICES = 4;
 
-    //private int wordColorIndex = 0;
-    private int k = 1;
-
+    private int neg = 1;
     private float increaseAmount = 0;
-
-    // CUSTOM TESTING VARIABLES 
-
-    [SerializeField] float A;
-    [SerializeField] float B;
-    [SerializeField] float C;
-
-    [SerializeField] float D;
-    [SerializeField] float E;
-    [SerializeField] float F;
-
-    // --------------------------
 
     private void Awake()
     {
@@ -33,37 +19,30 @@ public class TextEffectsController : MonoBehaviour
             _instance = this;
     }
 
-    /*
-    private void ChangeWordColor()
+    public void ChangeWordColor(TMP_Text dialogueHolderText, int wordColorIndex, Color color)
     {
-        dialogueHolderText.ForceMeshUpdate();
-
         var textInfo = dialogueHolderText.textInfo;
 
-        for (int i = 0; i < textInfo.wordCount; i++)
+        if(wordColorIndex <= textInfo.wordCount-1)
         {
-            if (i == wordColorIndex)
+            for (int i = textInfo.wordInfo[wordColorIndex].firstCharacterIndex; i <= textInfo.wordInfo[wordColorIndex].lastCharacterIndex; i++)
             {
-                for (int j = 0; j < textInfo.wordInfo[wordColorIndex].characterCount; j++)
-                {
-                    var charInfo = textInfo.characterInfo[j];
+                var charInfo = textInfo.characterInfo[i];
 
-                    int vertexIndex = textInfo.characterInfo[charInfo.index].vertexIndex;
+                int vertexIndex = textInfo.characterInfo[charInfo.index].vertexIndex;
 
-                    Color32[] vertexColors = textInfo.meshInfo[charInfo.materialReferenceIndex].colors32;
-                    vertexColors[vertexIndex + 0] = Color.red;
-                    vertexColors[vertexIndex + 1] = Color.red;
-                    vertexColors[vertexIndex + 2] = Color.red;
-                    vertexColors[vertexIndex + 3] = Color.red;
-                }
+                Color32[] vertexColors = textInfo.meshInfo[charInfo.materialReferenceIndex].colors32;
 
+                vertexColors[vertexIndex + 0] = color;
+                vertexColors[vertexIndex + 1] = color;
+                vertexColors[vertexIndex + 2] = color;
+                vertexColors[vertexIndex + 3] = color;
             }
         }
 
         dialogueHolderText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
     }
-    */
 
     public void DoTextEffect(TMP_Text dialogueHolderText, ETextEffects textEffect)
     {
@@ -93,10 +72,6 @@ public class TextEffectsController : MonoBehaviour
                 GlitchTextEffect(verts, charInfo);
             else if (textEffect == ETextEffects.LightGlitch)
                 LightGlitchTextEffect(verts, charInfo);
-            else if (textEffect == ETextEffects.PingPong)
-                PingPongTextEffect(verts, charInfo);
-            else if (textEffect == ETextEffects.Custom) // CUSTOMIZE
-                Custom(verts, charInfo);
 
         }
 
@@ -116,40 +91,40 @@ public class TextEffectsController : MonoBehaviour
 
     private void WiggleTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Cos(Time.time * 2 + orig.x * 0.7f) * 3 * k, Mathf.Sin(Time.time * 8) * 0.6f * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Cos(Time.time * 2 + orig.x * 0.7f) * 3 * neg, Mathf.Sin(Time.time * 8) * 0.6f * neg, 0);
         }
     }
 
     private void VibrationTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 80) * 0.6f * k, Mathf.Sin(Time.time * 60) * 0.6f * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 80) * 0.6f * neg, Mathf.Sin(Time.time * 60) * 0.6f * neg, 0);
         }
     }
 
     private void VibrationTextEffectV2(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 2 + orig.x * 2) * 3 * k, Mathf.Sin(Time.time * 3 + orig.x * 1.5f) * 4 * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 2 + orig.x * 2) * 3 * neg, Mathf.Sin(Time.time * 3 + orig.x * 1.5f) * 4 * neg, 0);
         }
     }
 
-    private void RageTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo) // NOT READY
+    private void RageTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         if (increaseAmount < 5)
             increaseAmount += Time.deltaTime / 50;
@@ -157,54 +132,31 @@ public class TextEffectsController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * k,
-                Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * neg,
+                Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * neg, 0);
         }
     }
 
     private void GlitchTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time + orig.x * 50) * 0.1f * k, Mathf.Tan(Time.time + orig.x * 50) * 0.1f * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time + orig.x * 50) * 0.1f * neg, Mathf.Tan(Time.time + orig.x * 50) * 0.1f * neg, 0);
         }
     }
 
     private void LightGlitchTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
     {
-        k *= -1;
+        neg *= -1;
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * k, Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * k, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, 0);
         }
     }
-
-    private void PingPongTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo) // NOT READY
-    {
-        k *= -1;
-
-        for (int j = 0; j < TMP_PRO_VERTICES; j++)
-        {
-            var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Log(Time.time + orig.x * 5) * k, Mathf.Log(Time.time + orig.x * -15) * k, 0);
-        }
-    }
-
-    private void Custom(Vector3[] verts, TMP_CharacterInfo charInfo) // FOR NEW EFFECTS
-    {
-        k *= -1;
-
-        for (int j = 0; j < TMP_PRO_VERTICES; j++)
-        {
-            var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * A + orig.x * B) * C * k, Mathf.Sin(Time.time * D + orig.x * E) * F * k, 0);
-        }
-    }
-
 
 }
