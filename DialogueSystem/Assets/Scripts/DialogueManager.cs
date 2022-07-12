@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public Func<OneDialogue> OnCustomDialogueActions;
     public Action OnEndDialogueActions;
 
+    public bool isDialogueStarted = false;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -39,6 +41,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue, int activeTextIndexInScene) // For Creating New Dialogue
     {
+        isDialogueStarted = true;
 
         SetActiveTextInScene(activeTextIndexInScene);
 
@@ -51,7 +54,6 @@ public class DialogueManager : MonoBehaviour
         StartDialogueCustomActions();
 
         DisplayNextSentence();
-
     }
 
     public void DisplayNextSentence()
@@ -113,11 +115,12 @@ public class DialogueManager : MonoBehaviour
 
         fastWrite = false;
         isCoroutineEnd = true;
-        Destroy(newAudioSource);
+        Destroy(newAudioSource.gameObject);
     }
 
     private void EndDialogue()
     {
+        isDialogueStarted = false;
 
         if (activeDialogueHolder.GetComponent<Animator>() != null)
             activeDialogueHolder.GetComponent<Animator>().Play(endDialogueAnimationStateName, 0);

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,10 @@ public class DialogueTrigger : MonoBehaviour
     private static DialogueTrigger _instance;
     public static DialogueTrigger Instance { get { return _instance; } }
 
-    [SerializeField] Queue<Dialogue> dialogue;
+    [SerializeField] List<Dialogue> dialogueList;
     [SerializeField] int[] effectTextIndex;
+
+    private Queue<Dialogue> dialogueQueue;
 
     private int index = 0;
 
@@ -20,10 +21,26 @@ public class DialogueTrigger : MonoBehaviour
             _instance = this;
     }
 
+    private void Start()
+    {
+        dialogueQueue = new Queue<Dialogue>();
+
+        foreach (Dialogue dialogue in dialogueList)
+            dialogueQueue.Enqueue(dialogue);
+    }
+
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogue.Dequeue(), effectTextIndex[index++]);
-    }
+        DialogueManager dialogueManager = DialogueManager.Instance;
+
+        if(dialogueManager.isDialogueStarted || dialogueQueue.Count > 0)
+        {
+            if (!dialogueManager.isDialogueStarted)
+                dialogueManager.StartDialogue(dialogueQueue.Dequeue(), effectTextIndex[index++]);
+            else
+                dialogueManager.DisplayNextSentence();
+        }
+    }   
 
 
 
