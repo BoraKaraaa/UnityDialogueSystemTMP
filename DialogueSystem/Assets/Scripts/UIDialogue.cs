@@ -16,8 +16,8 @@ public class UIOneDialogue : OneDialogue
     public int diffColorWordIndex;
     public Color diffColor;
 
-    public UIOneDialogue(string characterName, string sentence, float textWriteSpeed, AudioSource textAudio, ETextEffects textEffects, bool overWrite, Image image, int diffColorWordIndex, Color diffColor) 
-        : base(characterName, sentence, textWriteSpeed, textAudio, textEffects, overWrite)
+    public UIOneDialogue(string sentence, float textWriteSpeed, AudioSource textAudio, ETextEffects textEffects, bool overWrite, Image image, int diffColorWordIndex, Color diffColor) 
+        : base(sentence, textWriteSpeed, textAudio, textEffects, overWrite)
     {
         this.image = image;
         this.diffColorWordIndex = diffColorWordIndex;

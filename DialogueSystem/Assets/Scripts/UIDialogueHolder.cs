@@ -26,7 +26,7 @@ public class UIDialogueHolder : DialogueHolder
 
         foreach (string sentence in dialogue.sentences)
         {
-            DialogueManager.Instance.oneDialogueQue.Enqueue(new UIOneDialogue(dialogue.characterName, dialogue.sentences[dialogueIndex],
+            DialogueManager.Instance.oneDialogueQue.Enqueue(new UIOneDialogue(dialogue.sentences[dialogueIndex],
                 dialogue.textWriteSpeeds[dialogueIndex], dialogue.textAudios[dialogueIndex], dialogue.textEffects[dialogueIndex], dialogue.overWrite[dialogueIndex],
                 ((UIDialogue)dialogue).images[dialogueIndex], ((UIDialogue)dialogue).diffColorWordIndex[dialogueIndex], ((UIDialogue)dialogue).diffColor[dialogueIndex]));
 

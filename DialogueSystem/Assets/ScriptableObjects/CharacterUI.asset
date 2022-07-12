@@ -12,32 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28fd91eacb4daf4c97f1f30f165166b, type: 3}
   m_Name: CharacterUI
   m_EditorClassIdentifier: 
-  characterName: 
   sentences:
-  - Selam Oyku
-  - Telefonunu artik birakman lazim
-  - bazi seylerden vazgecmek gerekir
-  - XOXO...
+  - Hello There !!!
+  - Who is talking ?
+  - You don't need to think about that
+  - Where is my daughter you MONSTER !
+  - CALM DOWN
+  - You
+  - ' will'
+  - ' see'
+  - ESCAPE FROM THE TIME
   textWriteSpeeds:
   - 0.2
   - 0.1
+  - 0.1
+  - 0.2
+  - 0.4
+  - 0.3
+  - 0.3
   - 0.3
   - 0.6
   textAudios:
-  - {fileID: 3233731252970135360, guid: 27858c0849cb51f40bf51474d317d407, type: 3}
-  - {fileID: 3233731252970135360, guid: 27858c0849cb51f40bf51474d317d407, type: 3}
-  - {fileID: 3233731252970135360, guid: 27858c0849cb51f40bf51474d317d407, type: 3}
-  - {fileID: 3233731252970135360, guid: 27858c0849cb51f40bf51474d317d407, type: 3}
-  textEffects: 03000000010000000400000002000000
-  overWrite: 00000001
+  - {fileID: 3233731252970135360, guid: eff5e98d1a081dd4fbd00471aaf4388c, type: 3}
+  - {fileID: 3233731252970135360, guid: fe36fd68988f5c441b7b3c8ad43d082f, type: 3}
+  - {fileID: 3233731252970135360, guid: eff5e98d1a081dd4fbd00471aaf4388c, type: 3}
+  - {fileID: 3233731252970135360, guid: fe36fd68988f5c441b7b3c8ad43d082f, type: 3}
+  - {fileID: 3233731252970135360, guid: c5dbd15a8aec2664e9c3f91704ae06f1, type: 3}
+  - {fileID: 3233731252970135360, guid: b8bb2a9e741ea2d43aa115f3f1a0243e, type: 3}
+  - {fileID: 3233731252970135360, guid: b8bb2a9e741ea2d43aa115f3f1a0243e, type: 3}
+  - {fileID: 3233731252970135360, guid: b8bb2a9e741ea2d43aa115f3f1a0243e, type: 3}
+  - {fileID: 3233731252970135360, guid: 5041d003c9010bf4186e85de89526712, type: 3}
+  textEffects: 060000000200000006000000020000000400000003000000030000000300000002000000
+  overWrite: 000000000000010100
   images:
-  - {fileID: 8411265200795382929, guid: d3a6f8769b035b9449bde928ff77a72a, type: 3}
-  - {fileID: 2491774978434678136, guid: 497513075ec41c4468f2ff31304f897b, type: 3}
-  - {fileID: 8411265200795382929, guid: d3a6f8769b035b9449bde928ff77a72a, type: 3}
-  - {fileID: 2491774978434678136, guid: 497513075ec41c4468f2ff31304f897b, type: 3}
-  diffColorWordIndex: 000000000100000002000000ffffffff
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: 5b86d13701bb87948a0690ff7244193d, type: 3}
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: 5b86d13701bb87948a0690ff7244193d, type: 3}
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: a6fed9f701b2d1047a794b66cd71dfe4, type: 3}
+  - {fileID: 2517083848953353888, guid: 4ea814514fb42f448a8a0beb063803c6, type: 3}
+  diffColorWordIndex: ffffffffffffffffffffffff05000000ffffffffffffffffffffffffffffffff03000000
   diffColor:
-  - {r: 1, g: 0.6367924, b: 0.6367924, a: 1}
-  - {r: 0.8004801, g: 0.8962264, b: 0.04650232, a: 1}
-  - {r: 0.5290361, g: 1, b: 0.4009434, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.8584906, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.7264151, g: 0.03769135, b: 0.03769135, a: 1}
