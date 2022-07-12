@@ -1,28 +1,28 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] Dialogue dialogue;
-    [SerializeField] int effectTextIndex;
+    private static DialogueTrigger _instance;
+    public static DialogueTrigger Instance { get { return _instance; } }
 
-    private int i = 0;
+    [SerializeField] Queue<Dialogue> dialogue;
+    [SerializeField] int[] effectTextIndex;
 
-    private void Update()
+    private int index = 0;
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            if (i++ == 0)
-                TriggerDialogue(0);
-            else
-                DialogueManager.Instance.DisplayNextSentence();
-        }
-            
+        if (_instance != null && _instance != this)
+            Destroy(this.gameObject);
+        else
+            _instance = this;
     }
 
-    public virtual void TriggerDialogue(int dialogueIndex)
+    public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogue, effectTextIndex);
+        DialogueManager.Instance.StartDialogue(dialogue.Dequeue(), effectTextIndex[index++]);
     }
 
 
