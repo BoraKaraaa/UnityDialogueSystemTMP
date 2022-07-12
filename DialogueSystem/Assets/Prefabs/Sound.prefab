@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3233731252970135367}
   - component: {fileID: 3233731252970135360}
   m_Layer: 0
-  m_Name: OykuSoundd
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

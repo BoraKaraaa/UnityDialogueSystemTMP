@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour
         oneDialogueQue = new Queue<OneDialogue>();
     }
 
-    public void StartDialogue(Dialogue dialogue, int activeTextIndexInScene) // For Creating New Dialogue
+    public void StartDialogue(Dialogue dialogue, int activeTextIndexInScene)
     {
         isDialogueStarted = true;
 
@@ -103,8 +103,7 @@ public class DialogueManager : MonoBehaviour
             {
                 if (newAudioSource.loop == false)   
                     newAudioSource.Play();
-
-               
+         
                 if(fastWrite)
                     yield return wfsFast;
                 else

@@ -56,5 +56,4 @@ public class UIDialogueHolder : DialogueHolder
         this.gameObject.SetActive(false);
     }
 
-
 }
