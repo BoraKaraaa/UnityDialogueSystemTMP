@@ -6,7 +6,7 @@ public abstract class Dialogue : ScriptableObject
     public string[] sentences;
 
     public float[] textWriteSpeeds;
-    public AudioSource[] textAudios;
+    public AudioClip[] textAudios;
     public ETextEffects[] textEffects;
     public bool[] overWrite;
 
@@ -16,11 +16,11 @@ public abstract class OneDialogue
 {
     public string sentence;
     public float textWriteSpeed;
-    public AudioSource textAudio;
+    public AudioClip textAudio;
     public ETextEffects textEffects;
     public bool overWrite;
 
-    public OneDialogue(string sentence, float textWriteSpeed, AudioSource textAudio, ETextEffects textEffects, bool overWrite)
+    public OneDialogue(string sentence, float textWriteSpeed, AudioClip textAudio, ETextEffects textEffects, bool overWrite)
     {
         this.sentence = sentence;
         this.textWriteSpeed = textWriteSpeed;

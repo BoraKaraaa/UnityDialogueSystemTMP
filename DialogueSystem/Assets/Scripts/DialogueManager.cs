@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System;
+using System.Text;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class DialogueManager : MonoBehaviour
 
     public Action<Dialogue> OnStartDialogueActions;
     public Func<OneDialogue> OnCustomDialogueActions;
+    public Action OnOneDialogueEndActions;
     public Action OnEndDialogueActions;
 
     public bool isDialogueStarted = false;
@@ -73,6 +75,8 @@ public class DialogueManager : MonoBehaviour
 
         OneDialogue newOneDialogue =  OnCustomDialogueActions?.Invoke();
 
+        activeDialogueHolder.audioSource.clip = newOneDialogue.textAudio;
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(newOneDialogue));
 
@@ -84,11 +88,9 @@ public class DialogueManager : MonoBehaviour
             activeDialogueHolder.dialogueHolderText.text = String.Empty;
 
         isCoroutineEnd = false;
-
-        AudioSource newAudioSource = Instantiate(currDialogue.textAudio, transform.position, Quaternion.identity);
        
-        if(newAudioSource.loop == true)
-            newAudioSource.Play();
+        if(activeDialogueHolder.audioSource.loop == true)
+            activeDialogueHolder.audioSource.Play();
 
         WaitForSeconds wfs = new WaitForSeconds(currDialogue.textWriteSpeed);
         WaitForSeconds wfsFast = new WaitForSeconds(fastWriteSpeed);
@@ -97,12 +99,12 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in currDialogue.sentence)
         {
 
-            activeDialogueHolder.dialogueHolderText.text += letter; 
+            activeDialogueHolder.dialogueHolderText.text += letter;
 
             if (letter != ' ')
             {
-                if (newAudioSource.loop == false)   
-                    newAudioSource.Play();
+                if (activeDialogueHolder.audioSource.loop == false)
+                    activeDialogueHolder.audioSource.Play();
          
                 if(fastWrite)
                     yield return wfsFast;
@@ -114,7 +116,7 @@ public class DialogueManager : MonoBehaviour
 
         fastWrite = false;
         isCoroutineEnd = true;
-        Destroy(newAudioSource.gameObject);
+        OnOneDialogueEndActions?.Invoke();
     }
 
     private void EndDialogue()

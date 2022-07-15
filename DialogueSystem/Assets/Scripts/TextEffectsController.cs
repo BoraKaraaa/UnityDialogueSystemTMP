@@ -11,6 +11,13 @@ public class TextEffectsController : MonoBehaviour
     private int neg = 1;
     private float increaseAmount = 0;
 
+    [SerializeField] float A;
+    [SerializeField] float B;
+    [SerializeField] float C;
+    [SerializeField] float D;
+    [SerializeField] float E;
+    [SerializeField] float F;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -158,5 +165,17 @@ public class TextEffectsController : MonoBehaviour
             verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, 0);
         }
     }
+
+    private void FallingTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)
+    {
+        neg *= -1;
+
+        for (int j = 0; j < TMP_PRO_VERTICES; j++)
+        {
+            var orig = verts[charInfo.vertexIndex + j];
+            verts[charInfo.vertexIndex + j] = orig - new Vector3(neg * Mathf.Clamp(Mathf.Cos(Time.time * A + orig.x *B) * C, 0, 200) , Mathf.Clamp(D, 0, 500), 0);
+        }
+    }
+
 
 }

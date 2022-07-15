@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UIDialogueHolder : DialogueHolder
 {
     [SerializeField] private Image dialogueHolderImage;
+    [SerializeField] private Animator dialogueAnimator;
 
     private Color color = Color.white;
     private int diffColorWordIndex = -1; 
@@ -24,11 +25,14 @@ public class UIDialogueHolder : DialogueHolder
 
         int dialogueIndex = 0;
 
+        UIDialogue UIDialogue = dialogue as UIDialogue;
+
         foreach (string sentence in dialogue.sentences)
         {
-            DialogueManager.Instance.oneDialogueQue.Enqueue(new UIOneDialogue(dialogue.sentences[dialogueIndex],
-                dialogue.textWriteSpeeds[dialogueIndex], dialogue.textAudios[dialogueIndex], dialogue.textEffects[dialogueIndex], dialogue.overWrite[dialogueIndex],
-                ((UIDialogue)dialogue).images[dialogueIndex], ((UIDialogue)dialogue).diffColorWordIndex[dialogueIndex], ((UIDialogue)dialogue).diffColor[dialogueIndex]));
+            DialogueManager.Instance.oneDialogueQue.Enqueue(new UIOneDialogue(UIDialogue.sentences[dialogueIndex],
+                UIDialogue.textWriteSpeeds[dialogueIndex], UIDialogue.textAudios[dialogueIndex], UIDialogue.textEffects[dialogueIndex], UIDialogue.overWrite[dialogueIndex],
+                UIDialogue.sprites[UIDialogue.characterCounts[dialogueIndex]], UIDialogue.animators[UIDialogue.characterCounts[dialogueIndex]], UIDialogue.animatorStateNames[dialogueIndex],
+                UIDialogue.diffColorWordIndex[dialogueIndex], UIDialogue.diffColor[dialogueIndex]));
 
             dialogueIndex++;
         }
@@ -38,22 +42,28 @@ public class UIDialogueHolder : DialogueHolder
     {
         UIOneDialogue newUIOneDialogue =  DialogueManager.Instance.oneDialogueQue.Dequeue() as UIOneDialogue;
 
-        dialogueHolderImage.sprite = newUIOneDialogue.image.sprite;
+        dialogueHolderImage.sprite = newUIOneDialogue.sprite;
+        dialogueAnimator.runtimeAnimatorController = newUIOneDialogue.animator;
+
+        dialogueAnimator.Play(newUIOneDialogue.animatorStateName);
 
         diffColorWordIndex = newUIOneDialogue.diffColorWordIndex;
         color = newUIOneDialogue.diffColor;
 
         SetEtextEffects(newUIOneDialogue.textEffects);
 
-        if (newUIOneDialogue.image.GetComponent<Animator>() != null)
-            newUIOneDialogue.image.GetComponent<Animator>().enabled = true;
-
         return newUIOneDialogue;
+    }
+
+    public override void OnOneDialogueEndActions()
+    {
+        dialogueAnimator.Play("NotTalking");
     }
 
     public override void OnEndDialogueActions()
     {
-        this.gameObject.SetActive(false);
+        DialogueTrigger.Instance.TriggerDialogue();
+        //this.gameObject.SetActive(false);
     }
 
 }
