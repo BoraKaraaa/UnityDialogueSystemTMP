@@ -4,20 +4,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UISimpDialogueData", menuName = "ScriptableObjects/UISimpDialogueDataScriptableObject", order = 1)]
 public class UISimpDialogue : Dialogue
 {
-    
+    [Header("UISimpDialogue Essential Values")] 
+    [Space]
     public RuntimeAnimatorController[] animators;
     
-    public List<AnimatorStateNamesDic> animatorStateNames;
-    public List<DiffColorWordIndexDic> diffColorWordIndex;
-    public List<DiffColorDic> diffColor;
+    [Header("UISimpDialogue Default Values")] 
+    [Space]
+    public string defAnimatorStateNames;
 
+    [Header("UISimpDialogue Specific Values")]
+    [Space]
+    public List<AnimatorStateNamesDic> animatorStateNames;
 }
 
 public class RealUISimpDialogue : RealDialogue
 {
     public string[] animatorStateNames;
-    public int[] diffColorWordIndex;
-    public Color[] diffColor;
 
     public override void Init(Dialogue dialogue)
     {
@@ -28,24 +30,11 @@ public class RealUISimpDialogue : RealDialogue
         UIDialogue uiDialogue = dialogue as UIDialogue;
 
         animatorStateNames = new string[arraysLength];
-        diffColorWordIndex = new int[arraysLength];
-        diffColor = new Color[arraysLength];
     }
 
     public void SetCustomAnimatorStateName(int index, string customAnimatorStateName)
     {
         animatorStateNames[index] = customAnimatorStateName;
     }
-    
-    public void SetCustomDiffColorWordIndex(int index, int customDiffColorWordIndex)
-    {
-        this.diffColorWordIndex[index] = customDiffColorWordIndex;
-    }
-    
-    public void SetCustomDiffColor(int index, Color customDiffColor)
-    {
-        this.diffColor[index] = customDiffColor;
-    }
-    
 
 }

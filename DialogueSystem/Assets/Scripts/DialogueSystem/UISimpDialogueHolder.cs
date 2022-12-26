@@ -1,38 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(UISimpDialogueDefVal))]
 public class UISimpDialogueHolder : DialogueHolder
 {
-    
     [SerializeField] private Animator dialogueAnimator;
-    [SerializeField] private UISimpDialogueDefVal uiSimpDialogueDefVal;
-
-    private Color color = Color.white;
-    private int diffColorWordIndex = -1;
 
     private RealUISimpDialogue realUISimpDialogue;
     private UISimpDialogue uiSimpDialogue;
-    
-
-    public void Update()
-    {
-        if (textEffect != ETextEffects.None)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-            else
-                TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-        }
-
-        if (diffColorWordIndex != -1)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-            else
-                TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-        }
-
-    }
 
     public override void OnStartDialogueActions(Dialogue dialogue)
     {
@@ -53,22 +26,25 @@ public class UISimpDialogueHolder : DialogueHolder
         realUISimpDialogue.Init(dialogue);
         
         uiSimpDialogue = dialogue as UISimpDialogue;
-
-        for (int index = 0; index < dialogue.sentences.Length; index++)
-            SetDefaultValues(index);
+        
+        
+        StopTextEffect = false;
+        StopChangeColor = false;
+        
+        CheckAndStartTextEffect();
     }
     
     private void SetDefaultValues(int index)
     {
         realUISimpDialogue.SetText(index, uiSimpDialogue.sentences[index]); //Set Texts
         
-        realUISimpDialogue.SetCustomTextWriteSpeed(index, uiSimpDialogueDefVal.textWriteSpeeds[uiSimpDialogue.characterCounts[index]]);
-        realUISimpDialogue.SetCustomTextAudio(index, uiSimpDialogueDefVal.textAudios[uiSimpDialogue.characterCounts[index]]);
-        realUISimpDialogue.SetCustomTextEffect(index, uiSimpDialogueDefVal.textEffects[uiSimpDialogue.characterCounts[index]]);
-        realUISimpDialogue.SetCustomOverWrite(index);
-        realUISimpDialogue.SetCustomAnimatorStateName(index, uiSimpDialogueDefVal.animatorStateNames[uiSimpDialogue.characterCounts[index]]);
-        realUISimpDialogue.SetCustomDiffColorWordIndex(index, uiSimpDialogueDefVal.diffColorWordIndex[uiSimpDialogue.characterCounts[index]]);
-        realUISimpDialogue.SetCustomDiffColor(index, uiSimpDialogueDefVal.diffColor[uiSimpDialogue.characterCounts[index]]);
+        realUISimpDialogue.SetCustomTextWriteSpeed(index, uiSimpDialogue.defTextWriteSpeeds);
+        realUISimpDialogue.SetCustomTextAudio(index, uiSimpDialogue.defTextAudios);
+        realUISimpDialogue.SetCustomTextEffect(index, uiSimpDialogue.defTextEffects);
+        realUISimpDialogue.SetCustomOverWrite(index, uiSimpDialogue.defOverWrites);
+        realUISimpDialogue.SetCustomAnimatorStateName(index, uiSimpDialogue.defAnimatorStateNames);
+        realUISimpDialogue.SetCustomDiffColorWordIndex(index, uiSimpDialogue.defDiffColorWordIndex);
+        realUISimpDialogue.SetCustomDiffColor(index, uiSimpDialogue.defDiffColor);
     }
 
     private void ControlCustomValues(int index)
@@ -91,6 +67,7 @@ public class UISimpDialogueHolder : DialogueHolder
 
     public override RealDialogue OnCustomDialogueActions(int index)
     {
+        SetDefaultValues(index);
         ControlCustomValues(index);
         
         HolderOnCustomDialogueActions?.Invoke(realUISimpDialogue, index);
@@ -133,9 +110,10 @@ public class UISimpDialogueHolder : DialogueHolder
         {
             
         }
-
+        
+        StopTextEffect = true;
+        StopChangeColor = true;
         HolderOnEndDialogueActions?.Invoke();
-
     }
 
 }

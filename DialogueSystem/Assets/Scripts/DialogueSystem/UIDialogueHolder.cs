@@ -1,51 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(UIDialogueDefVal))]
 public class UIDialogueHolder : DialogueHolder
 {
-    [SerializeField] private UIDialogueDefVal uiDialogueDefVal;
-    
     [SerializeField] private Image dialogueHolderImage;
     [SerializeField] private Animator dialogueAnimator;
 
-    //EKSTRA
-    [SerializeField] private TrailRenderer trailRenderer;
-    //-----
-    
     private RealUIDialogue realUIDialogue;
     private UIDialogue uiDialogue;
-
-    private Color color = Color.white;
-    private int diffColorWordIndex = -1;
-
-    public void Update()
-    {
-        if (textEffect != ETextEffects.None)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-            else
-                TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-        }
-
-        if (diffColorWordIndex != -1)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-            else
-                TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-        }
-
-
-    }
 
     public override void OnStartDialogueActions(Dialogue dialogue)
     {
         if (DialogueStopGame)
         {
             DialogueManager.Instance.DialogueStopGame = true;
-            trailRenderer.enabled = false;
             Time.timeScale = 0f;
         }
 
@@ -58,23 +26,24 @@ public class UIDialogueHolder : DialogueHolder
         realUIDialogue.Init(dialogue);
         
         uiDialogue = dialogue as UIDialogue;
-
-        for (int index = 0; index < dialogue.sentences.Length; index++)
-            SetDefaultValues(index);
         
+        StopTextEffect = false;
+        StopChangeColor = false;
+        
+        CheckAndStartTextEffect();
     }
 
     private void SetDefaultValues(int index)
     { 
         realUIDialogue.SetText(index, uiDialogue.sentences[index]); //Set Texts
 
-        realUIDialogue.SetCustomTextWriteSpeed(index, uiDialogueDefVal.textWriteSpeeds[uiDialogue.characterCounts[index]]);
-        realUIDialogue.SetCustomTextAudio(index, uiDialogueDefVal.textAudios[uiDialogue.characterCounts[index]]);
-        realUIDialogue.SetCustomTextEffect(index, uiDialogueDefVal.textEffects[uiDialogue.characterCounts[index]]);
-        realUIDialogue.SetCustomOverWrite(index);
-        realUIDialogue.SetCustomAnimatorStateName(index, uiDialogueDefVal.animatorStateNames[uiDialogue.characterCounts[index]]);
-        realUIDialogue.SetCustomDiffColorWordIndex(index, uiDialogueDefVal.diffColorWordIndex[uiDialogue.characterCounts[index]]);
-        realUIDialogue.SetCustomDiffColor(index, uiDialogueDefVal.diffColor[uiDialogue.characterCounts[index]]);
+        realUIDialogue.SetCustomTextWriteSpeed(index, uiDialogue.defTextWriteSpeeds);
+        realUIDialogue.SetCustomTextAudio(index, uiDialogue.defTextAudios);
+        realUIDialogue.SetCustomTextEffect(index, uiDialogue.defTextEffects);
+        realUIDialogue.SetCustomOverWrite(index, uiDialogue.defOverWrites);
+        realUIDialogue.SetCustomAnimatorStateName(index, uiDialogue.defAnimatorStateNames);
+        realUIDialogue.SetCustomDiffColorWordIndex(index, uiDialogue.defDiffColorWordIndex);
+        realUIDialogue.SetCustomDiffColor(index, uiDialogue.defDiffColor);
     }
 
     private void ControlCustomValues(int index)
@@ -98,6 +67,7 @@ public class UIDialogueHolder : DialogueHolder
 
     public override RealDialogue OnCustomDialogueActions(int index)
     {
+        SetDefaultValues(index);
         ControlCustomValues(index);
         
         HolderOnCustomDialogueActions?.Invoke(realUIDialogue, index);
@@ -126,7 +96,6 @@ public class UIDialogueHolder : DialogueHolder
         if (DialogueStopGame)
         {
             DialogueManager.Instance.DialogueStopGame = false;
-            trailRenderer.enabled = true;
             Time.timeScale = 1f;
         }
         
@@ -144,6 +113,8 @@ public class UIDialogueHolder : DialogueHolder
        
         }
         
+        StopTextEffect = true;
+        StopChangeColor = true;
         HolderOnEndDialogueActions?.Invoke();
     }
 

@@ -1,35 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(UIBasicDialogueDefVal))]
 public class UIBasicDialogueHolder : DialogueHolder
 {
-   [SerializeField] private UIBasicDialogueDefVal uiBasicDialogueDefVal;
-
-    private Color color = Color.white;
-    private int diffColorWordIndex = -1;
-
     private RealUIBasicDialogue realUIBasicDialogue;
     private UIBasicDialogue uiBasicDialogue;
-
-    public void Update()
-    {
-        if (textEffect != ETextEffects.None)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-            else
-                TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
-        }
-
-        if (diffColorWordIndex != -1)
-        {
-            if (DialogueStopGame)
-                UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-            else
-                TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, diffColorWordIndex, color);
-        }
-
-    }
 
     public override void OnStartDialogueActions(Dialogue dialogue)
     {
@@ -48,21 +22,24 @@ public class UIBasicDialogueHolder : DialogueHolder
         realUIBasicDialogue.Init(dialogue);
         
         uiBasicDialogue = dialogue as UIBasicDialogue;
-
-        for (int index = 0; index < dialogue.sentences.Length; index++)
-            SetDefaultValues(index);
+        
+        
+        StopTextEffect = false;
+        StopChangeColor = false;
+        
+        CheckAndStartTextEffect();
     }
     
     private void SetDefaultValues(int index)
     {
         realUIBasicDialogue.SetText(index, uiBasicDialogue.sentences[index]); //Set Texts
 
-        realUIBasicDialogue.SetCustomTextWriteSpeed(index, uiBasicDialogueDefVal.textWriteSpeeds[uiBasicDialogue.characterCounts[index]]);
-        realUIBasicDialogue.SetCustomTextAudio(index, uiBasicDialogueDefVal.textAudios[uiBasicDialogue.characterCounts[index]]);
-        realUIBasicDialogue.SetCustomTextEffect(index, uiBasicDialogueDefVal.textEffects[uiBasicDialogue.characterCounts[index]]);
-        realUIBasicDialogue.SetCustomOverWrite(index);
-        realUIBasicDialogue.SetCustomDiffColorWordIndex(index, uiBasicDialogueDefVal.diffColorWordIndex[uiBasicDialogue.characterCounts[index]]);
-        realUIBasicDialogue.SetCustomDiffColor(index, uiBasicDialogueDefVal.diffColor[uiBasicDialogue.characterCounts[index]]);
+        realUIBasicDialogue.SetCustomTextWriteSpeed(index, uiBasicDialogue.defTextWriteSpeeds);
+        realUIBasicDialogue.SetCustomTextAudio(index, uiBasicDialogue.defTextAudios);
+        realUIBasicDialogue.SetCustomTextEffect(index, uiBasicDialogue.defTextEffects);
+        realUIBasicDialogue.SetCustomOverWrite(index, uiBasicDialogue.defOverWrites);
+        realUIBasicDialogue.SetCustomDiffColorWordIndex(index, uiBasicDialogue.defDiffColorWordIndex);
+        realUIBasicDialogue.SetCustomDiffColor(index, uiBasicDialogue.defDiffColor);
     }
 
     private void ControlCustomValues(int index)
@@ -83,6 +60,7 @@ public class UIBasicDialogueHolder : DialogueHolder
 
     public override RealDialogue OnCustomDialogueActions(int index)
     {
+        SetDefaultValues(index);
         ControlCustomValues(index);
         
         HolderOnCustomDialogueActions?.Invoke(realUIBasicDialogue, index);
@@ -91,7 +69,7 @@ public class UIBasicDialogueHolder : DialogueHolder
         color = realUIBasicDialogue.diffColor[index];
 
         SetEtextEffects(realUIBasicDialogue.textEffects[index]);
-        
+
         return realUIBasicDialogue;
     }
 
@@ -122,7 +100,13 @@ public class UIBasicDialogueHolder : DialogueHolder
             
         }
         
+        StopTextEffect = true;
+        StopChangeColor = true;
+        
         HolderOnEndDialogueActions?.Invoke();
     }
+    
+    
+    
 
 }

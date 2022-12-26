@@ -2,11 +2,8 @@ using System.Collections;
 using UnityEngine;
 using System;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : Singletonn<DialogueManager>
 {
-    private static DialogueManager _instance;
-    public static DialogueManager Instance { get { return _instance; } }
-
     [SerializeField] private DialogueHolder[] dialogueHolders;
     public DialogueHolder activeDialogueHolder;
 
@@ -28,15 +25,7 @@ public class DialogueManager : MonoBehaviour
     public bool isDialogueStarted = false;
 
     public bool DialogueStopGame { get; set; } = false;
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
-
+    
     public void StartDialogue(Dialogue dialogue, int activeTextIndexInScene)
     {
         isDialogueStarted = true;
@@ -45,7 +34,9 @@ public class DialogueManager : MonoBehaviour
         SetActiveTextInScene(activeTextIndexInScene);
 
         if (activeDialogueHolder.GetComponent<Animator>() != null)
+        {
             activeDialogueHolder.GetComponent<Animator>().Play(startDialogueAnimationStateName, 0);
+        }
 
         OnStartDialogueActions?.Invoke(dialogue);
         StartDialogueCustomActions();
@@ -120,7 +111,9 @@ public class DialogueManager : MonoBehaviour
         dialogueIndex = 0;
 
         if (activeDialogueHolder.GetComponent<Animator>() != null)
+        {
             activeDialogueHolder.GetComponent<Animator>().Play(endDialogueAnimationStateName, 0);
+        }
 
         OnEndDialogueActions?.Invoke();
         EndDialogueCustomActions();
@@ -143,10 +136,7 @@ public class DialogueManager : MonoBehaviour
 
     private void StartDialogueCustomActions() { }
 
-    private void EndDialogueCustomActions()
-    {
-
-    }
+    private void EndDialogueCustomActions() { }
 
 
 }

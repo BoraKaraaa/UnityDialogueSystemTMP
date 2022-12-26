@@ -831,7 +831,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &713623364
 MonoBehaviour:
@@ -845,8 +845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4275828e8962542945256f85557064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueList: []
-  effectTextIndex: 
+  dialogueList:
+  - {fileID: 0}
+  effectTextIndex: 00000000
 --- !u!1 &744540149
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +857,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 744540150}
-  - component: {fileID: 744540152}
   - component: {fileID: 744540151}
   m_Layer: 5
   m_Name: DialogueHolder (1)
@@ -896,35 +896,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 744540149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d0d12cb0482994391e0e523c721313, type: 3}
+  m_Script: {fileID: 11500000, guid: 2abee4488b5ba7340bd3338eb4c62cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueHolderText: {fileID: 0}
-  audioSource: {fileID: 0}
+  dialogueHolderText: {fileID: 768783423}
+  audioSource: {fileID: 129025783}
   dialogueEnd: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  diffColorWordIndex: -1
   DialogueStopGame: 0
-  uiDialogueDefVal: {fileID: 0}
-  dialogueHolderImage: {fileID: 0}
-  dialogueAnimator: {fileID: 0}
-  trailRenderer: {fileID: 0}
---- !u!114 &744540152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744540149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cce1a2d3df84a5499cb750a4f537ad5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textWriteSpeeds: []
-  textAudios: []
-  textEffects: 
-  animatorStateNames: []
-  diffColorWordIndex: 
-  diffColor: []
 --- !u!1 &768783421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,8 +1084,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d4f12dedeb01144b0d593835bd5f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueHolders: []
-  activeDialogueHolder: {fileID: 0}
+  dialogueHolders:
+  - {fileID: 1561079149}
+  - {fileID: 744540151}
+  activeDialogueHolder: {fileID: 1561079149}
   fastWriteSpeed: 0.04
   startDialogueAnimationStateName: 
   endDialogueAnimationStateName: 
@@ -1188,7 +1170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1561079146}
   - component: {fileID: 1561079148}
-  - component: {fileID: 1561079150}
   - component: {fileID: 1561079149}
   m_Layer: 5
   m_Name: DialogueHolder
@@ -1196,7 +1177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1561079146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1250,63 +1231,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d0d12cb0482994391e0e523c721313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueHolderText: {fileID: 0}
-  audioSource: {fileID: 0}
+  dialogueHolderText: {fileID: 447500067}
+  audioSource: {fileID: 1683620215}
   dialogueEnd: 0
+  color: {r: 1, g: 1, b: 1, a: 1}
+  diffColorWordIndex: -1
   DialogueStopGame: 0
-  uiDialogueDefVal: {fileID: 0}
-  dialogueHolderImage: {fileID: 0}
-  dialogueAnimator: {fileID: 0}
-  trailRenderer: {fileID: 0}
---- !u!114 &1561079150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561079145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cce1a2d3df84a5499cb750a4f537ad5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textWriteSpeeds: []
-  textAudios: []
-  textEffects: 
-  animatorStateNames: []
-  diffColorWordIndex: 
-  diffColor: []
---- !u!1 &1597627279
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1597627280}
-  m_Layer: 0
-  m_Name: Character
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1597627280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597627279}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  dialogueHolderImage: {fileID: 1833391770}
+  dialogueAnimator: {fileID: 1833391772}
 --- !u!1 &1682420859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1782954950
 MonoBehaviour:
@@ -1686,5 +1618,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
