@@ -12,6 +12,8 @@ public class UIDialogue : Dialogue
     [Header("UIDialogue Default Values")] 
     [Space(10)]
     public string defAnimatorStateNames;
+    
+    public List<string> defAnim;
 
     [Header("UIDialogue Specific Values")]
     [Space(10)]

@@ -37,13 +37,13 @@ public class UIDialogueHolder : DialogueHolder
     { 
         realUIDialogue.SetText(index, uiDialogue.sentences[index]); //Set Texts
 
-        realUIDialogue.SetCustomTextWriteSpeed(index, uiDialogue.defTextWriteSpeeds);
-        realUIDialogue.SetCustomTextAudio(index, uiDialogue.defTextAudios);
-        realUIDialogue.SetCustomTextEffect(index, uiDialogue.defTextEffects);
+        realUIDialogue.SetCustomTextWriteSpeed(index, uiDialogue.defTextWriteSpeeds[uiDialogue.characterCounts[index]]);
+        realUIDialogue.SetCustomTextAudio(index, uiDialogue.defTextAudios[uiDialogue.characterCounts[index]]);
+        realUIDialogue.SetCustomTextEffect(index, uiDialogue.defTextEffects[uiDialogue.characterCounts[index]]);
         realUIDialogue.SetCustomOverWrite(index, uiDialogue.defOverWrites);
         realUIDialogue.SetCustomAnimatorStateName(index, uiDialogue.defAnimatorStateNames);
-        realUIDialogue.SetCustomDiffColorWordIndex(index, uiDialogue.defDiffColorWordIndex);
-        realUIDialogue.SetCustomDiffColor(index, uiDialogue.defDiffColor);
+        realUIDialogue.SetCustomDiffColorWordIndex(index, uiDialogue.defDiffColorWordIndex[uiDialogue.characterCounts[index]]);
+        realUIDialogue.SetCustomDiffColor(index, uiDialogue.defDiffColor[uiDialogue.characterCounts[index]]);
     }
 
     private void ControlCustomValues(int index)

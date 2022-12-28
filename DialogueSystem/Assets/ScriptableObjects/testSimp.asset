@@ -14,18 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences: []
   characterCounts: 
-  defTextWriteSpeeds: 0
-  defTextAudios: {fileID: 0}
-  defTextEffects: 0
-  defOverWrites: 0
+  defTextWriteSpeeds:
+  - 0
+  - 0
+  defTextAudios:
+  - {fileID: 0}
+  - {fileID: 0}
+  defTextEffects: 0000000000000000
+  defOverWrites: 0000
+  defDiffColorWordIndex: 0000000000000000
+  defDiffColor:
+  - {r: -3.2800347e+26, g: 4.4e-43, b: 0, a: 0}
+  - {r: -1.551724e-38, g: 4.37e-43, b: 4.6e-44, a: 2.6540261e+20}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []
   overWrites: []
-  animators: []
-  defAnimatorStateNames: 
-  defDiffColorWordIndex: 0
-  defDiffColor: {r: 0, g: 0, b: 0, a: 0}
-  animatorStateNames: []
   diffColorWordIndex: []
   diffColor: []
+  animators: []
+  defAnimatorStateNames: 
+  animatorStateNames: []

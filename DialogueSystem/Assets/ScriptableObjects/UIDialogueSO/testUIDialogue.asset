@@ -18,19 +18,33 @@ MonoBehaviour:
   - merhaba ben bora
   - 361 asistaninin anasini sikeyim
   characterCounts: 00000000000000000100000001000000
-  defTextWriteSpeeds: 0.2
-  defTextAudios: {fileID: 0}
-  defTextEffects: 6
-  defOverWrites: 0
-  defDiffColorWordIndex: -1
-  defDiffColor: {r: 1, g: 1, b: 1, a: 0}
+  defTextWriteSpeeds:
+  - 0
+  - 0
+  defTextAudios:
+  - {fileID: 0}
+  - {fileID: 0}
+  defTextEffects: 0000000000000000
+  defOverWrites: 0000
+  defDiffColorWordIndex: 0000000000000000
+  defDiffColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
   textWriteSpeeds: []
   textAudios: []
-  textEffects: []
+  textEffects:
+  - id: 3
+    textEffect: 4
   overWrites: []
   diffColorWordIndex: []
-  diffColor: []
+  diffColor:
+  - id: 3
+    diffColor: {r: 1, g: 0, b: 0, a: 1}
   sprites: []
   animators: []
   defAnimatorStateNames: 
+  defAnim:
+  - 
+  - 
+  - 
   animatorStateNames: []

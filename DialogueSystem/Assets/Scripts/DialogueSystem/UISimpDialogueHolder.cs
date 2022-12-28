@@ -38,13 +38,13 @@ public class UISimpDialogueHolder : DialogueHolder
     {
         realUISimpDialogue.SetText(index, uiSimpDialogue.sentences[index]); //Set Texts
         
-        realUISimpDialogue.SetCustomTextWriteSpeed(index, uiSimpDialogue.defTextWriteSpeeds);
-        realUISimpDialogue.SetCustomTextAudio(index, uiSimpDialogue.defTextAudios);
-        realUISimpDialogue.SetCustomTextEffect(index, uiSimpDialogue.defTextEffects);
+        realUISimpDialogue.SetCustomTextWriteSpeed(index, uiSimpDialogue.defTextWriteSpeeds[uiSimpDialogue.characterCounts[index]]);
+        realUISimpDialogue.SetCustomTextAudio(index, uiSimpDialogue.defTextAudios[uiSimpDialogue.characterCounts[index]]);
+        realUISimpDialogue.SetCustomTextEffect(index, uiSimpDialogue.defTextEffects[uiSimpDialogue.characterCounts[index]]);
         realUISimpDialogue.SetCustomOverWrite(index, uiSimpDialogue.defOverWrites);
         realUISimpDialogue.SetCustomAnimatorStateName(index, uiSimpDialogue.defAnimatorStateNames);
-        realUISimpDialogue.SetCustomDiffColorWordIndex(index, uiSimpDialogue.defDiffColorWordIndex);
-        realUISimpDialogue.SetCustomDiffColor(index, uiSimpDialogue.defDiffColor);
+        realUISimpDialogue.SetCustomDiffColorWordIndex(index, uiSimpDialogue.defDiffColorWordIndex[uiSimpDialogue.characterCounts[index]]);
+        realUISimpDialogue.SetCustomDiffColor(index, uiSimpDialogue.defDiffColor[uiSimpDialogue.characterCounts[index]]);
     }
 
     private void ControlCustomValues(int index)

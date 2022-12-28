@@ -17,12 +17,21 @@ MonoBehaviour:
   - 'BIZIM ADIMIZ '
   - HINKIR MUNKUR
   characterCounts: 000000000100000000000000
-  defTextWriteSpeeds: 0.2
-  defTextAudios: {fileID: 8300000, guid: fc4f84b4a278b8f48be9efb14191263d, type: 3}
-  defTextEffects: 2
-  defOverWrites: 0
-  defDiffColorWordIndex: -1
-  defDiffColor: {r: 0, g: 0, b: 0, a: 0}
+  defTextWriteSpeeds:
+  - 0
+  - 0
+  - 0
+  defTextAudios:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  defTextEffects: 000000000000000000000000
+  defOverWrites: 000000
+  defDiffColorWordIndex: 000000000000000000000000
+  defDiffColor:
+  - {r: -3.2800347e+26, g: 4.4e-43, b: 0, a: 0}
+  - {r: -1.551614e-38, g: 4.37e-43, b: 4.6e-44, a: 1.3458741e+22}
+  - {r: -3.2800347e+26, g: 4.4e-43, b: -3.2800466e+26, a: 4.4e-43}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []

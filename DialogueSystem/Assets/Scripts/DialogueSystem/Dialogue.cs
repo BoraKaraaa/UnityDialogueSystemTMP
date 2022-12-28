@@ -3,24 +3,43 @@ using UnityEngine;
 
 public abstract class Dialogue : ScriptableObject
 {
-    [Header("Dialogue Essential Values")] 
+    [Header("DIALOGUE ESSENTIAL VALUES")] 
     [Space(10)]
     
     [TextArea(3, 10)]
     public string[] sentences;
     
+    [Space(5)]
+    [Header("!!! Length should equal to Sentences Length\n" +
+            "Each element represent which sentences will talk by\n" +
+            "which character index !!!\n" +
+            "EX:\nSentences:\n" +
+            "A: Hi There !\n" +
+            "B: Hi ?\n" +
+            "A: Don't you know me ?\n" +
+            "CharacterCount Length = 3 (0, 1, 0) like (A, B, A)")]
+    
+    [Space(5)]
     public int[] characterCounts;
-
-    [Header("Dialogue Default Values")] 
-    [Space(10)]
-    public float defTextWriteSpeeds;
-    public AudioClip defTextAudios;
-    public ETextEffects defTextEffects;
+    
+    [Header("DIALOGUE DEFAULT VALUES")] 
+    [Space(5)]
+    [Header("!!! Each default value list length should be\n" +
+            "equal --characterCounts-- (max index size + 1) then corresponding\n" +
+            "index in the --characterCounts-- represent own default value !!!\n")]
+    
+    [Space(5)]
     public bool defOverWrites;
-    public int defDiffColorWordIndex;
-    public Color defDiffColor;
+    public List<float> defTextWriteSpeeds;
+    public List<AudioClip> defTextAudios;
+    public List<ETextEffects> defTextEffects;
+    public List<int> defDiffColorWordIndex;
+    public List<Color> defDiffColor;
 
-    [Header("Dialogue Specific Values")]
+    public List<NestedListInt> AAAAAAAAA;
+    [Space(5)] 
+
+    [Header("DIALOGUE SPECIFIC VALUES")]
     [Space(10)]
     public List<TextWriteSpeedDic> textWriteSpeeds;
     public List<AudioClipDic> textAudios;
@@ -29,6 +48,13 @@ public abstract class Dialogue : ScriptableObject
     public List<DiffColorWordIndexDic> diffColorWordIndex;
     public List<DiffColorDic> diffColor;
     
+}
+
+[System.Serializable]
+public class NestedListInt // use for defDiffColorWordIndex
+{
+    public int id;
+    public List<int> aaa;
 }
 
 public abstract class RealDialogue
