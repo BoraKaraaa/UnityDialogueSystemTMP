@@ -33,10 +33,7 @@ public abstract class Dialogue : ScriptableObject
     public List<float> defTextWriteSpeeds;
     public List<AudioClip> defTextAudios;
     public List<ETextEffects> defTextEffects;
-    public List<int> defDiffColorWordIndex;
     public List<Color> defDiffColor;
-
-    public List<NestedListInt> AAAAAAAAA;
     [Space(5)] 
 
     [Header("DIALOGUE SPECIFIC VALUES")]
@@ -45,16 +42,9 @@ public abstract class Dialogue : ScriptableObject
     public List<AudioClipDic> textAudios;
     public List<ETextEffectsDic> textEffects;
     public List<OverWriteDic> overWrites;
-    public List<DiffColorWordIndexDic> diffColorWordIndex;
     public List<DiffColorDic> diffColor;
+    public List<WordColorIndex> WordColorIndices;
     
-}
-
-[System.Serializable]
-public class NestedListInt // use for defDiffColorWordIndex
-{
-    public int id;
-    public List<int> aaa;
 }
 
 public abstract class RealDialogue
@@ -64,8 +54,8 @@ public abstract class RealDialogue
     public AudioClip[] textAudios;
     public ETextEffects[] textEffects;
     public bool[] overWrite;
-    public int[] diffColorWordIndex;
     public Color[] diffColor;
+    public WordColorIndex[] WordColorIndices;
 
     private int arraysLength;
     public virtual void Init(Dialogue dialogue)
@@ -77,8 +67,8 @@ public abstract class RealDialogue
         textAudios = new AudioClip[arraysLength];
         textEffects = new ETextEffects[arraysLength];
         overWrite = new bool[arraysLength];
-        diffColorWordIndex = new int[arraysLength];
         diffColor = new Color[arraysLength];
+        WordColorIndices = new WordColorIndex[arraysLength];
     }
 
     public void SetText(int index, string sentence)
@@ -106,14 +96,19 @@ public abstract class RealDialogue
         overWrite[index] = customOverWrite;
     }
     
-    public void SetCustomDiffColorWordIndex(int index, int customDiffColorWordIndex)
-    {
-        this.diffColorWordIndex[index] = customDiffColorWordIndex;
-    }
-    
     public void SetCustomDiffColor(int index, Color customDiffColor)
     {
-        this.diffColor[index] = customDiffColor;
+        diffColor[index] = customDiffColor;
+    }
+    
+    public void SetCustomDiffColorWordIndex(int index, int customDiffColorWordIndex)
+    {
+       // diffColorWordIndex[index] = customDiffColorWordIndex;
+    }
+    
+    public void SetCustomDiffColorWord(int index, Color customDiffColorWord)
+    {
+       // diffColorWord[index] = customDiffColorWord;
     }
 
 }

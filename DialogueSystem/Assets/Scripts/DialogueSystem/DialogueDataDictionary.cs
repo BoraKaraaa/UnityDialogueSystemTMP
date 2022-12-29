@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueDataDictionary
@@ -36,15 +37,16 @@ public class OverWriteDic {
 }
 
 [System.Serializable]
-public class DiffColorWordIndexDic {
-    public int id;
-    public int diffColorWordIndex;
-}
-
-[System.Serializable]
 public class DiffColorDic {
     public int id;
     public Color diffColor;
+}
+
+[System.Serializable]
+public class WordColorIndex
+{
+    public int id;
+    public List<DiffColorDic> aaa;
 }
 
 /// Additional Dialogue Data

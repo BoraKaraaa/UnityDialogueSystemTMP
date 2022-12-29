@@ -12,7 +12,7 @@ public abstract class DialogueHolder : MonoBehaviour
     public Color color = Color.white;
     public int diffColorWordIndex = -1;
 
-    protected ETextEffects textEffect = ETextEffects.None;
+    private ETextEffects textEffect = ETextEffects.None;
     
     public Action HolderOnStartDialogueActions;
     public Action<RealDialogue, int> HolderOnCustomDialogueActions;
@@ -21,8 +21,11 @@ public abstract class DialogueHolder : MonoBehaviour
     
     public bool DialogueStopGame;
 
-    public bool StopTextEffect { get; set; } = false;
-    public bool StopChangeColor { get; set; } = false;
+    protected bool StopTextEffect { get; set; } = false;
+    protected bool StopChangeColor { get; set; } = false;
+
+    private RealDialogue _realDialogue = null;
+    private Dialogue _dialogue = null;
 
     private Coroutine _textEffectRoutine = null;
     private Coroutine _changeWordColorRoutine = null;
@@ -50,11 +53,93 @@ public abstract class DialogueHolder : MonoBehaviour
         DialogueManager.Instance.OnEndDialogueActions -= OnEndDialogueActions;
         DialogueManager.Instance.OnOneDialogueEndActions -= OnOneDialogueEndActions;
     }
-    public void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
-    public abstract void OnStartDialogueActions(Dialogue dialogue);
-    public abstract RealDialogue OnCustomDialogueActions(int index);
-    public abstract void OnOneDialogueEndActions();
-    public abstract void OnEndDialogueActions();
+
+    protected void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
+    protected abstract void InitReferences(ref RealDialogue realDialogue);
+
+    protected virtual void OnStartDialogueActions(Dialogue dialogue)
+    {
+        if (DialogueStopGame)
+        {
+            DialogueManager.Instance.DialogueStopGame = true;
+            Time.timeScale = 0f;
+        }
+
+        _dialogue = dialogue;
+
+        InitReferences(ref _realDialogue);
+        
+        this.gameObject.SetActive(true);
+        
+        StopTextEffect = false;
+        StopChangeColor = false;
+        
+        CheckAndStartTextEffect();
+        HolderOnStartDialogueActions?.Invoke();
+    }
+
+    protected virtual RealDialogue OnCustomDialogueActions(int index)
+    {
+        //diffColorWordIndex = _realDialogue.diffColorWordIndex[index];
+        //color = _realDialogue.diffColorWord[index];
+
+        SetEtextEffects(_realDialogue.textEffects[index]);
+
+        return _realDialogue;
+    }
+    protected abstract void OnOneDialogueEndActions();
+
+    protected virtual void OnEndDialogueActions()
+    {
+        if (DialogueStopGame)
+        {
+            DialogueManager.Instance.DialogueStopGame = false;
+            Time.timeScale = 1f;
+        }
+        
+        if (dialogueEnd == EDialogueEnd.None)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else if (dialogueEnd == EDialogueEnd.NextDialogue)
+        {
+            DialogueTrigger.Instance.TriggerDialogue();
+            this.gameObject.SetActive(false);
+        }
+        else if (dialogueEnd == EDialogueEnd.LoadScene)
+        {
+       
+        }
+        
+        StopTextEffect = true;
+        StopChangeColor = true;
+        HolderOnEndDialogueActions?.Invoke();
+    }
+
+    protected virtual void SetDefaultValues(int index)
+    {
+        _realDialogue.SetText(index, _dialogue.sentences[index]); //Set Texts
+
+        _realDialogue.SetCustomTextWriteSpeed(index, _dialogue.defTextWriteSpeeds[_dialogue.characterCounts[index]]);
+        _realDialogue.SetCustomTextAudio(index, _dialogue.defTextAudios[_dialogue.characterCounts[index]]);
+        _realDialogue.SetCustomTextEffect(index, _dialogue.defTextEffects[_dialogue.characterCounts[index]]);
+        _realDialogue.SetCustomOverWrite(index, _dialogue.defOverWrites);
+        _realDialogue.SetCustomDiffColor(index, _dialogue.defDiffColor[_dialogue.characterCounts[index]]);
+    }
+
+    protected virtual void ControlCustomValues(int index)
+    {
+        if (index < _dialogue.textWriteSpeeds.Count)  
+            _realDialogue.SetCustomTextWriteSpeed(_dialogue.textWriteSpeeds[index].id, _dialogue.textWriteSpeeds[index].textWriteSpeed);
+        if (index < _dialogue.textAudios.Count)  
+            _realDialogue.SetCustomTextAudio(_dialogue.textAudios[index].id, _dialogue.textAudios[index].textAudio);
+        if (index < _dialogue.textEffects.Count)  
+            _realDialogue.SetCustomTextEffect(_dialogue.textEffects[index].id, _dialogue.textEffects[index].textEffect);
+        if (index < _dialogue.overWrites.Count)  
+            _realDialogue.SetCustomOverWrite(_dialogue.overWrites[index].id, _dialogue.overWrites[index].overWrite);
+        if (index < _dialogue.diffColor.Count)  
+            _realDialogue.SetCustomDiffColor(_dialogue.diffColor[index].id, _dialogue.diffColor[index].diffColor);
+    }
 
     protected virtual void CheckAndStartTextEffect()
     {
