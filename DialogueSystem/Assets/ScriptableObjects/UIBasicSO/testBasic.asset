@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: testBasic
   m_EditorClassIdentifier: 
   sentences:
-  - HEBELE HUBELE
+  - HEBELE HUBELE MALABU NALABU RENK TESTI NASIL GECIYOR COK MERAK ETTIM
   - 'BIZIM ADIMIZ '
   - HINKIR MUNKUR
   characterCounts: 000000000100000000000000
   defOverWrites: 0
   defTextWriteSpeeds:
-  - 0
-  - 0
+  - 0.4
+  - 0.4
   defTextAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  defTextEffects: 0000000000000000
-  defDiffColorWordIndex: 0000000000000000
+  - {fileID: 8300000, guid: fc4f84b4a278b8f48be9efb14191263d, type: 3}
+  - {fileID: 8300000, guid: 39f811559540e7a4f8c727a4fd196529, type: 3}
+  defTextEffects: 0600000002000000
   defDiffColor:
-  - {r: -3.2800347e+26, g: 4.4e-43, b: 0, a: 0}
-  - {r: -1.551614e-38, g: 4.37e-43, b: 4.6e-44, a: 1.3458741e+22}
-  AAAAAAAAA:
-  - id: 0
-    aaa: 00000000
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []
   overWrites: []
-  diffColorWordIndex: []
   diffColor: []
+  WordColorIndices:
+  - id: 0
+    diffWordColorDics:
+    - wordId: 00000000020000000400000006000000
+      diffColor: {r: 0.8018868, g: 0.04160734, b: 0.04160734, a: 1}

@@ -25,7 +25,8 @@ public class UISimpDialogueHolder : DialogueHolder
     
     protected override void SetDefaultValues(int index)
     {
-        realUISimpDialogue.SetCustomAnimatorStateName(index, uiSimpDialogue.defAnimatorStateNames);
+        realUISimpDialogue.SetCustomAnimatorStateName(index, 
+            uiSimpDialogue.defAnimatorStateNames[uiSimpDialogue.characterCounts[index]]);
     }
 
     protected override void ControlCustomValues(int index)

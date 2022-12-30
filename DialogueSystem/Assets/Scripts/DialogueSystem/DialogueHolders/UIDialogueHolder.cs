@@ -27,13 +27,17 @@ public class UIDialogueHolder : DialogueHolder
 
     protected override void SetDefaultValues(int index)
     {
-        realUIDialogue.SetCustomAnimatorStateName(index, uiDialogue.defAnimatorStateNames);
+        realUIDialogue.SetCustomAnimatorStateName(index, 
+            uiDialogue.defAnimatorStateNames[uiDialogue.characterCounts[index]]);
     }
 
     protected override void ControlCustomValues(int index)
     {
-        if (index < uiDialogue.animatorStateNames.Count)  
-            realUIDialogue.SetCustomAnimatorStateName(uiDialogue.animatorStateNames[index].id, uiDialogue.animatorStateNames[index].animationStateName);
+        if (index < uiDialogue.animatorStateNames.Count)
+        {
+            realUIDialogue.SetCustomAnimatorStateName(uiDialogue.animatorStateNames[index].id, 
+                uiDialogue.animatorStateNames[index].animationStateName);
+        }
     }
 
     protected override RealDialogue OnCustomDialogueActions(int index)

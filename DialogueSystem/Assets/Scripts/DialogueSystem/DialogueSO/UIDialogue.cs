@@ -1,23 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "UISimpDialogueData", menuName = "ScriptableObjects/UISimpDialogueDataScriptableObject", order = 1)]
-public class UISimpDialogue : Dialogue
+[CreateAssetMenu(fileName = "UIDialogueData", menuName = "ScriptableObjects/UIDialogueDataScriptableObject", order = 1)]
+public class UIDialogue : Dialogue
 {
-    [Header("UISimpDialogue Essential Values")] 
-    [Space]
+    [Header("UIDialogue Essential Values")] 
+    [Space(10)]
+    public Sprite[] sprites;
     public RuntimeAnimatorController[] animators;
-    
-    [Header("UISimpDialogue Default Values")] 
-    [Space]
-    public string defAnimatorStateNames;
 
-    [Header("UISimpDialogue Specific Values")]
-    [Space]
+    [Header("UIDialogue Default Values")] 
+    [Space(10)]
+    public List<string> defAnimatorStateNames;
+
+    [Header("UIDialogue Specific Values")]
+    [Space(10)]
     public List<AnimatorStateNamesDic> animatorStateNames;
 }
 
-public class RealUISimpDialogue : RealDialogue
+public class RealUIDialogue : RealDialogue
 {
     public string[] animatorStateNames;
 
@@ -26,8 +27,6 @@ public class RealUISimpDialogue : RealDialogue
         base.Init(dialogue);
         
         int arraysLength = dialogue.sentences.Length;
-        
-        UIDialogue uiDialogue = dialogue as UIDialogue;
 
         animatorStateNames = new string[arraysLength];
     }

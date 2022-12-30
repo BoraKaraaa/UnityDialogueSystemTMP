@@ -12,10 +12,6 @@ public class RealUIBasicDialogue : RealDialogue
     public override void Init(Dialogue dialogue)
     {
         base.Init(dialogue);
-        
-        int arraysLength = dialogue.sentences.Length;
-        
-        UIDialogue uiDialogue = dialogue as UIDialogue;
     }
 
 }

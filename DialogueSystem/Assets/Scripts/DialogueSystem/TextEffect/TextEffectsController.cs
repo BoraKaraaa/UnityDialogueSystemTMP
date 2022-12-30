@@ -1,22 +1,12 @@
 using UnityEngine;
 using TMPro;
 
-public class UnScaledTextEffectController : MonoBehaviour
+public class TextEffectsController : Singletonn<TextEffectsController>
 {
-    private static UnScaledTextEffectController _instance;
-    public static UnScaledTextEffectController Instance { get { return _instance; } }
-
     private const int TMP_PRO_VERTICES = 4;
 
     private int neg = 1;
     private float increaseAmount = 0;
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
 
     public void ChangeWordColor(TMP_Text dialogueHolderText, int wordColorIndex, Color color)
     {
@@ -100,7 +90,7 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Cos(Time.unscaledTime * 2 + orig.x * 0.7f) * 3 * neg, Mathf.Sin(Time.unscaledTime * 8) * 0.6f * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Cos(Time.time * 2 + orig.x * 0.7f) * 3 * neg, Mathf.Sin(Time.time * 8) * 0.6f * neg, 0);
         }
     }
 
@@ -111,7 +101,7 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.unscaledTime * 80) * 0.6f * neg, Mathf.Sin(Time.unscaledTime * 60) * 0.6f * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 80) * 0.6f * neg, Mathf.Sin(Time.time * 60) * 0.6f * neg, 0);
         }
     }
 
@@ -122,7 +112,7 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.unscaledTime * 2 + orig.x * 2) * 3 * neg, Mathf.Sin(Time.unscaledTime * 3 + orig.x * 1.5f) * 4 * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Sin(Time.time * 2 + orig.x * 2) * 3 * neg, Mathf.Sin(Time.time * 3 + orig.x * 1.5f) * 4 * neg, 0);
         }
     }
 
@@ -136,8 +126,8 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.unscaledTime * 1 + orig.x * increaseAmount) * increaseAmount * neg,
-                Mathf.Tan(Time.unscaledTime * 1 + orig.x * increaseAmount) * increaseAmount * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * neg,
+                Mathf.Tan(Time.time * 1 + orig.x * increaseAmount) * increaseAmount * neg, 0);
         }
     }
 
@@ -148,7 +138,7 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.unscaledTime + orig.x * 50) * 0.1f * neg, Mathf.Tan(Time.unscaledTime + orig.x * 50) * 0.1f * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time + orig.x * 50) * 0.1f * neg, Mathf.Tan(Time.time + orig.x * 50) * 0.1f * neg, 0);
         }
     }
 
@@ -159,7 +149,7 @@ public class UnScaledTextEffectController : MonoBehaviour
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {
             var orig = verts[charInfo.vertexIndex + j];
-            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.unscaledTime * 2 + orig.x) * 0.01f * neg, Mathf.Tan(Time.unscaledTime * 2 + orig.x) * 0.01f * neg, 0);
+            verts[charInfo.vertexIndex + j] = orig + new Vector3(Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, Mathf.Tan(Time.time * 2 + orig.x) * 0.01f * neg, 0);
         }
     }
 

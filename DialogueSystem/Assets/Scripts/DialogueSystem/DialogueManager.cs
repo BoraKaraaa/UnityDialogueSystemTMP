@@ -4,8 +4,13 @@ using System;
 
 public class DialogueManager : Singletonn<DialogueManager>
 {
+    [Space(5)]
     [SerializeField] private DialogueHolder[] dialogueHolders;
-    public DialogueHolder activeDialogueHolder;
+
+    private DialogueHolder activeDialogueHolder = null;
+    public DialogueHolder ActiveDialogueHolder => activeDialogueHolder;
+
+    private Animator activeDialogueHolderAnimator = null;
 
     [SerializeField] private float fastWriteSpeed = 0.04f;
     private bool isCoroutineEnd = true;
@@ -13,7 +18,8 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     private int dialogueIndex = 0;
     private int maxSize;
-
+    
+    [Space(5)]
     [SerializeField] private string startDialogueAnimationStateName;
     [SerializeField] private string endDialogueAnimationStateName;
 
@@ -22,7 +28,8 @@ public class DialogueManager : Singletonn<DialogueManager>
     public Action OnOneDialogueEndActions;
     public Action OnEndDialogueActions;
 
-    public bool isDialogueStarted = false;
+    private bool isDialogueStarted = false;
+    public bool IsDialogueStarted => isDialogueStarted;
 
     public bool DialogueStopGame { get; set; } = false;
     
@@ -33,9 +40,9 @@ public class DialogueManager : Singletonn<DialogueManager>
         
         SetActiveTextInScene(activeTextIndexInScene);
 
-        if (activeDialogueHolder.GetComponent<Animator>() != null)
+        if (activeDialogueHolderAnimator != null)
         {
-            activeDialogueHolder.GetComponent<Animator>().Play(startDialogueAnimationStateName, 0);
+            activeDialogueHolderAnimator.Play(startDialogueAnimationStateName, 0);
         }
 
         OnStartDialogueActions?.Invoke(dialogue);
@@ -60,7 +67,15 @@ public class DialogueManager : Singletonn<DialogueManager>
 
         RealDialogue realDialogue =  OnCustomDialogueActions?.Invoke(dialogueIndex);
 
-        activeDialogueHolder.audioSource.clip = realDialogue.textAudios[dialogueIndex];
+        if (realDialogue == null)
+        {
+            Debug.Log("REAL DIALOGUE VALUE NULL");
+        }
+        else
+        {
+            activeDialogueHolder.audioSource.clip = realDialogue.textAudios[dialogueIndex];
+        }
+        
         
         StopAllCoroutines();
         StartCoroutine(TypeSentence(realDialogue));
@@ -69,13 +84,17 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     IEnumerator TypeSentence(RealDialogue realDialogue)
     {
-        if(!realDialogue.overWrite[dialogueIndex])
+        if (!realDialogue.overWrite[dialogueIndex])
+        {
             activeDialogueHolder.dialogueHolderText.text = String.Empty;
+        }
 
         isCoroutineEnd = false;
-       
-        if(activeDialogueHolder.audioSource.loop == true)
+
+        if (activeDialogueHolder.audioSource.loop == true)
+        {
             activeDialogueHolder.audioSource.Play();
+        }
 
         WaitForSecondsRealtime wfs = new WaitForSecondsRealtime(realDialogue.textWriteSpeeds[dialogueIndex]);
         WaitForSecondsRealtime wfsFast = new WaitForSecondsRealtime(fastWriteSpeed);
@@ -89,7 +108,9 @@ public class DialogueManager : Singletonn<DialogueManager>
             if (letter != ' ')
             {
                 if (activeDialogueHolder.audioSource.loop == false)
+                {
                     activeDialogueHolder.audioSource.Play();
+                }
          
                 if(fastWrite)
                     yield return wfsFast;
@@ -110,9 +131,9 @@ public class DialogueManager : Singletonn<DialogueManager>
         isDialogueStarted = false;
         dialogueIndex = 0;
 
-        if (activeDialogueHolder.GetComponent<Animator>() != null)
+        if (activeDialogueHolderAnimator != null)
         {
-            activeDialogueHolder.GetComponent<Animator>().Play(endDialogueAnimationStateName, 0);
+            activeDialogueHolderAnimator.Play(endDialogueAnimationStateName, 0);
         }
 
         OnEndDialogueActions?.Invoke();
@@ -122,9 +143,15 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     private void SetActiveTextInScene(int index)
     {
-        activeDialogueHolder.UnSubsActions();
+        if (activeDialogueHolder != null)
+        {
+            activeDialogueHolder.UnSubsActions();
+        }
+        
         activeDialogueHolder = dialogueHolders[index];
         activeDialogueHolder.SubsActions();
+
+        activeDialogueHolderAnimator = activeDialogueHolder.GetComponent<Animator>();
     }
 
     public void SkipDialogue()
@@ -137,6 +164,5 @@ public class DialogueManager : Singletonn<DialogueManager>
     private void StartDialogueCustomActions() { }
 
     private void EndDialogueCustomActions() { }
-
-
+    
 }

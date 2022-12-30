@@ -55,7 +55,7 @@ public abstract class RealDialogue
     public ETextEffects[] textEffects;
     public bool[] overWrite;
     public Color[] diffColor;
-    public WordColorIndex[] WordColorIndices;
+    public WordColorIndex[] wordColorIndices;
 
     private int arraysLength;
     public virtual void Init(Dialogue dialogue)
@@ -68,7 +68,7 @@ public abstract class RealDialogue
         textEffects = new ETextEffects[arraysLength];
         overWrite = new bool[arraysLength];
         diffColor = new Color[arraysLength];
-        WordColorIndices = new WordColorIndex[arraysLength];
+        wordColorIndices = new WordColorIndex[arraysLength];
     }
 
     public void SetText(int index, string sentence)
@@ -100,15 +100,10 @@ public abstract class RealDialogue
     {
         diffColor[index] = customDiffColor;
     }
-    
-    public void SetCustomDiffColorWordIndex(int index, int customDiffColorWordIndex)
+
+    public void SetDiffWordColorDic(int index, WordColorIndex wordColorIndex)
     {
-       // diffColorWordIndex[index] = customDiffColorWordIndex;
-    }
-    
-    public void SetCustomDiffColorWord(int index, Color customDiffColorWord)
-    {
-       // diffColorWord[index] = customDiffColorWord;
+        wordColorIndices[index] = wordColorIndex;
     }
 
 }

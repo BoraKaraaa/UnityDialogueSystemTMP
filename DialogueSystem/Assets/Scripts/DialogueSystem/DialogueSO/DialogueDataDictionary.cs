@@ -43,10 +43,17 @@ public class DiffColorDic {
 }
 
 [System.Serializable]
+public class DiffWordColorDic {
+    public List<int> wordId;
+    public Color diffColor;
+}
+
+
+[System.Serializable]
 public class WordColorIndex
 {
     public int id;
-    public List<DiffColorDic> aaa;
+    public List<DiffWordColorDic> diffWordColorDics;
 }
 
 /// Additional Dialogue Data

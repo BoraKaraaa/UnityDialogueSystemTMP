@@ -2,13 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : Singletonn<DialogueTrigger>
 {
-    private static DialogueTrigger _instance;
-    public static DialogueTrigger Instance { get { return _instance; } }
-
+    [Space(5)]
+    [Header("Add Dialogue Scriptable Objects In Executing Order")]
+    [Space(3)]
     [SerializeField] List<Dialogue> dialogueList;
-    [SerializeField] List<int> effectTextIndex;
+    
+    [Space(5)]
+    
+    [Header("Target DialogueHolder Index on  --DialogueManager--")]
+    [Space(3)]
+    [SerializeField] List<int> targetDialogueHolderIndex;
 
     private Queue<Dialogue> dialogueQueue;
 
@@ -16,44 +21,39 @@ public class DialogueTrigger : MonoBehaviour
 
     public Action OnDialogudeTriggerInit;
 
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
-
     private void Start()
     {
         dialogueQueue = new Queue<Dialogue>();
 
         int startIndex = 0;
 
-        for(int i = startIndex; i < dialogueList.Count; i++)
+        for (int i = startIndex; i < dialogueList.Count; i++)
+        {
             dialogueQueue.Enqueue(dialogueList[i]);
+        }
         
         OnDialogudeTriggerInit?.Invoke();
-
     }
     
     public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex)
     {
         dialogueList.Add(newDialogue);
         dialogueQueue.Enqueue(newDialogue);
-        effectTextIndex.Add(effectDialogueHolderIndex);
+        targetDialogueHolderIndex.Add(effectDialogueHolderIndex);
     }
 
     public void TriggerDialogue()
     {
-        if(DialogueManager.Instance.isDialogueStarted || dialogueQueue.Count > 0)
+        if(DialogueManager.Instance.IsDialogueStarted || dialogueQueue.Count > 0)
         {
-            if (!DialogueManager.Instance.isDialogueStarted)
+            if (!DialogueManager.Instance.IsDialogueStarted)
             {
-                DialogueManager.Instance.StartDialogue(dialogueQueue.Dequeue(), effectTextIndex[index++]);
+                DialogueManager.Instance.StartDialogue(dialogueQueue.Dequeue(), targetDialogueHolderIndex[index++]);
             }
             else
+            {
                 DialogueManager.Instance.DisplayNextSentence();
+            }
         }
     }   
 
