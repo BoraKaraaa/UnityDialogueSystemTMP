@@ -180,6 +180,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
     protected virtual void CheckAndStartWordColorEffect()
     {
+
         if (wordColorIndex != null && changeWordColorRoutine == null)
         {
             if (DialogueStopGame)
@@ -230,15 +231,16 @@ public abstract class DialogueHolder : MonoBehaviour
                 yield break;
             }
 
-            foreach (var diffWordColorDic in wordColorIndex.diffWordColorDics)
+            for (int i = 0; ( wordColorIndex != null && i < wordColorIndex.diffWordColorDics.Count ); i++)
             {
-                foreach (int wordIndex in diffWordColorDic.wordId)
+                foreach (int wordIndex in wordColorIndex.diffWordColorDics[i].wordId)
                 {
-                    TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, diffWordColorDic.diffColor);
+                    TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, 
+                        wordColorIndex.diffWordColorDics[i].diffColor);
                 }
             }
+
             yield return null;
-            
         }
     }
 
@@ -251,13 +253,15 @@ public abstract class DialogueHolder : MonoBehaviour
                 yield break;
             }
             
-            foreach (var diffWordColorDic in wordColorIndex.diffWordColorDics)
+            for (int i = 0; ( wordColorIndex != null && i < wordColorIndex.diffWordColorDics.Count ); i++)
             {
-                foreach (int wordIndex in diffWordColorDic.wordId)
+                foreach (int wordIndex in wordColorIndex.diffWordColorDics[i].wordId)
                 {
-                    UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, diffWordColorDic.diffColor);
+                    UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, 
+                        wordColorIndex.diffWordColorDics[i].diffColor);
                 }
             }
+            
             yield return null;
         }
     }
