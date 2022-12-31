@@ -44,7 +44,7 @@ public class TextEffectsController : Singletonn<TextEffectsController>
         dialogueHolderText.ForceMeshUpdate();
 
         var textInfo = dialogueHolderText.textInfo;
-
+        
         for (int i = 0; i < textInfo.characterCount; i++)
         {
             var charInfo = textInfo.characterInfo[i];

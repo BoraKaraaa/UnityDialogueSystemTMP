@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DialogueImageController : MonoBehaviour
@@ -19,7 +20,7 @@ public class DialogueImageController : MonoBehaviour
             //wordToSpriteDictionary.Add(keyValuePair.textKey, keyValuePair.spriteValue);
         }
     }
-
+    public TMP_SpriteAsset tmpSprite;
     public bool TryToAddImage(string word) => wordToSpriteDictionary.ContainsKey(word);
     
     // Call Only After TryToAddImage
@@ -30,8 +31,9 @@ public class DialogueImageController : MonoBehaviour
     
 }
 
+[Serializable]
 public class TextToSpriteKVP
 {
     public string textKey;
-    public Sprite spriteValue;
+    public TMP_SpriteAsset tmpSprite;
 }

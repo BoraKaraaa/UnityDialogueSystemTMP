@@ -2,24 +2,21 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
+[CustomEditor(typeof(UIDialogue))]
 public class UIDialogueEditor : Editor
 {
-    [CustomEditor(typeof(UIDialogue))]
-    public class LevelScriptEditor : Editor 
+    public override void OnInspectorGUI()
     {
-        public override void OnInspectorGUI()
+        DrawDefaultInspector();
+            
+        /*
+        UIDialogue uiDialogue = (UIDialogue)target;
+        
+        foreach (var sentence in uiDialogue.sentences)
         {
-            DrawDefaultInspector();
-            
-            /*
-            UIDialogue uiDialogue = (UIDialogue)target;
-            
-            foreach (var sentence in uiDialogue.sentences)
-            {
-                EditorGUILayout.TextArea(sentence, GUILayout.Width(400), GUILayout.Height(100));
-            }
-            */
-
+            EditorGUILayout.TextArea(sentence, GUILayout.Width(400), GUILayout.Height(100));
         }
+        */
+
     }
 }
