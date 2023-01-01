@@ -18,6 +18,9 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     private int dialogueIndex = 0;
     private int maxSize;
+
+    private string word = String.Empty;
+    private int wordCounter = 0;
     
     [Space(5)]
     [SerializeField] private string startDialogueAnimationStateName;
@@ -75,11 +78,12 @@ public class DialogueManager : Singletonn<DialogueManager>
         {
             activeDialogueHolder.audioSource.clip = realDialogue.textAudios[dialogueIndex];
         }
-        
-        
+
+        //GeneralDialogueColorController.Instance.ClearWordColorList(dialogueHolderText);
+        GeneralDialogueImageController.Instance.ClearImages(activeDialogueHolder.dialogueHolderText);
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(realDialogue));
-
     }
 
     IEnumerator TypeSentence(RealDialogue realDialogue)
@@ -99,14 +103,17 @@ public class DialogueManager : Singletonn<DialogueManager>
         WaitForSecondsRealtime wfs = new WaitForSecondsRealtime(realDialogue.textWriteSpeeds[dialogueIndex]);
         WaitForSecondsRealtime wfsFast = new WaitForSecondsRealtime(fastWriteSpeed);
 
-
+        word = String.Empty;
+        wordCounter = 0;
+        
         foreach (char letter in realDialogue.sentences[dialogueIndex])
         {
-
             activeDialogueHolder.dialogueHolderText.text += letter;
 
             if (letter != ' ')
             {
+                word += letter;
+                
                 if (activeDialogueHolder.audioSource.loop == false)
                 {
                     activeDialogueHolder.audioSource.Play();
@@ -117,12 +124,29 @@ public class DialogueManager : Singletonn<DialogueManager>
                 else
                     yield return wfs;
             }
+            else
+            {
+                //GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
+                    
+                if (GeneralDialogueImageController.Instance.TryToAddImage(word))
+                {
+                    activeDialogueHolder.dialogueHolderText.text += 
+                        GeneralDialogueImageController.Instance.
+                            AddImageAfterWord(activeDialogueHolder.dialogueHolderText, word, wordCounter);
+
+                    wordCounter++;
+                }
+                
+                wordCounter++;
+                word = String.Empty;
+            }
 
         }
 
         dialogueIndex++;
         fastWrite = false;
         isCoroutineEnd = true;
+        EndOneDialogueCustomActions();
         OnOneDialogueEndActions?.Invoke();
     }
 
@@ -164,5 +188,7 @@ public class DialogueManager : Singletonn<DialogueManager>
     private void StartDialogueCustomActions() { }
 
     private void EndDialogueCustomActions() { }
+
+    private void EndOneDialogueCustomActions() { }
     
 }

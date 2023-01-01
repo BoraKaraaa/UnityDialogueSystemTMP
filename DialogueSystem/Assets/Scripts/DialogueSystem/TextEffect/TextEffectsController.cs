@@ -77,10 +77,13 @@ public class TextEffectsController : Singletonn<TextEffectsController>
         for (int i = 0; i < textInfo.meshInfo.Length; i++)
         {
             var meshInfo = textInfo.meshInfo[i];
-            meshInfo.mesh.vertices = meshInfo.vertices;
-            dialogueHolderText.UpdateGeometry(meshInfo.mesh, i);
-        }
 
+            if (meshInfo.mesh != null)
+            {
+                meshInfo.mesh.vertices = meshInfo.vertices;
+                dialogueHolderText.UpdateGeometry(meshInfo.mesh, i);
+            }
+        }
     }
 
     private void WiggleTextEffect(Vector3[] verts, TMP_CharacterInfo charInfo)

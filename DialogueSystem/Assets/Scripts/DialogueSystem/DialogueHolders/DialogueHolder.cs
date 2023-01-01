@@ -41,7 +41,7 @@ public abstract class DialogueHolder : MonoBehaviour
         DialogueManager.Instance.OnStartDialogueActions -= OnStartDialogueActions;
         DialogueManager.Instance.OnCustomDialogueActions -= OnCustomDialogueActions;
         DialogueManager.Instance.OnEndDialogueActions -= OnEndDialogueActions;
-        DialogueManager.Instance.OnOneDialogueEndActions += OnOneDialogueEndActions;
+        DialogueManager.Instance.OnOneDialogueEndActions -= OnOneDialogueEndActions;
     }
 
     private void OnDestroy()
@@ -89,7 +89,11 @@ public abstract class DialogueHolder : MonoBehaviour
 
         return realDialogue;
     }
-    protected abstract void OnOneDialogueEndActions();
+
+    protected virtual void OnOneDialogueEndActions()
+    {
+
+    }
 
     protected virtual void OnEndDialogueActions()
     {

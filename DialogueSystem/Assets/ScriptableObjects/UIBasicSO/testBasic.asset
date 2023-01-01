@@ -37,6 +37,6 @@ MonoBehaviour:
   - id: 0
     diffWordColorDics:
     - wordId: 00000000020000000400000006000000
-      diffColor: {r: 0.8113208, g: 0.23344605, b: 0.23344605, a: 1}
+      diffColor: {r: 1, g: 0.9026813, b: 0.3066038, a: 1}
     - wordId: 01000000030000000500000007000000
       diffColor: {r: 0.36320752, g: 1, b: 0.36768478, a: 1}
