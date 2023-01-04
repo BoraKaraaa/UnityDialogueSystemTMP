@@ -147,8 +147,6 @@ public class DialogueManager : Singletonn<DialogueManager>
                     activeDialogueHolder.dialogueHolderText.text += 
                         GeneralDialogueImageController.Instance.
                             AddImageAfterWord(activeDialogueHolder.dialogueHolderText, word, wordCounter);
-
-                   // wordCounter++;
                 }
                 
                 wordCounter++;
@@ -167,8 +165,6 @@ public class DialogueManager : Singletonn<DialogueManager>
                 activeDialogueHolder.dialogueHolderText.text += 
                     GeneralDialogueImageController.Instance.
                         AddImageAfterWord(activeDialogueHolder.dialogueHolderText, word, wordCounter);
-
-                //wordCounter++;
             } 
             
             wordCounter++;
