@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: testBasic
   m_EditorClassIdentifier: 
   sentences:
-  - HEBELE HUBELE MALABU NALABU RENK TESTI NASIL GECIYOR COK MERAK ETTIM
+  - COK MOK COK MOK COK MOK COK
   - 'BIZIM ADIMIZ '
   - HINKIR MUNKUR
   characterCounts: 000000000100000000000000
@@ -26,8 +26,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 39f811559540e7a4f8c727a4fd196529, type: 3}
   defTextEffects: 0600000002000000
   defDiffColor:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.40427297, g: 1, b: 0.2783019, a: 1}
+  - {r: 0.8030017, g: 1, b: 0.13679248, a: 1}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []
@@ -36,7 +36,5 @@ MonoBehaviour:
   WordColorIndices:
   - id: 0
     diffWordColorDics:
-    - wordId: 00000000020000000400000006000000
-      diffColor: {r: 1, g: 0.9026813, b: 0.3066038, a: 1}
-    - wordId: 01000000030000000500000007000000
-      diffColor: {r: 0.36320752, g: 1, b: 0.36768478, a: 1}
+    - wordId: 010000000300000005000000
+      diffColor: {r: 1, g: 0.4036057, b: 0, a: 1}

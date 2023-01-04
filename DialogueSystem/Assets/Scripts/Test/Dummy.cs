@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dummy : MonoBehaviour
@@ -9,6 +7,11 @@ public class Dummy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             DialogueTrigger.Instance.TriggerDialogue();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            DialogueManager.Instance.DisplayNextSentence();
         }
     }
 }

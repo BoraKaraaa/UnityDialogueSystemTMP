@@ -8,18 +8,12 @@ public class UnScaledTextEffect : MonoBehaviour
     [SerializeField] private Color textColor;
     [SerializeField] private TMP_Text tmpText;
 
-    UnScaledTextEffectController textEffectsController;
-
-    private void Start()
-    {
-        textEffectsController = UnScaledTextEffectController.Instance;
-    }
     void Update()
     {
         if (customTextEffect != ETextEffects.None)
-            textEffectsController.DoTextEffect(tmpText, customTextEffect);
+            UnScaledTextEffectController.Instance.DoTextEffect(tmpText, customTextEffect);
 
         if (diffColorWordIndex != -1)
-            textEffectsController.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
+            UnScaledTextEffectController.Instance.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
     }
 }

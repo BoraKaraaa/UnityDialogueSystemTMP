@@ -72,7 +72,7 @@ public class UnScaledTextEffectController : Singletonn<UnScaledTextEffectControl
         ChangeWorkingCopy(dialogueHolderText, textInfo);
     }
 
-    public void ChangeWorkingCopy(TMP_Text dialogueHolderText, TMP_TextInfo textInfo)
+    private void ChangeWorkingCopy(TMP_Text dialogueHolderText, TMP_TextInfo textInfo)
     {
         for (int i = 0; i < textInfo.meshInfo.Length; i++)
         {

@@ -18,7 +18,7 @@ public class TextEffectsController : Singletonn<TextEffectsController>
             {
                 var charInfo = textInfo.characterInfo[i];
 
-                int vertexIndex = textInfo.characterInfo[charInfo.index].vertexIndex;
+                int vertexIndex = textInfo.characterInfo[i].vertexIndex;
 
                 Color32[] vertexColors = textInfo.meshInfo[charInfo.materialReferenceIndex].colors32;
 
@@ -72,7 +72,7 @@ public class TextEffectsController : Singletonn<TextEffectsController>
         ChangeWorkingCopy(dialogueHolderText, textInfo);
     }
 
-    public void ChangeWorkingCopy(TMP_Text dialogueHolderText, TMP_TextInfo textInfo)
+    private void ChangeWorkingCopy(TMP_Text dialogueHolderText, TMP_TextInfo textInfo)
     {
         for (int i = 0; i < textInfo.meshInfo.Length; i++)
         {
@@ -124,7 +124,9 @@ public class TextEffectsController : Singletonn<TextEffectsController>
         neg *= -1;
 
         if (increaseAmount < 5)
+        {
             increaseAmount += Time.deltaTime / 50;
+        }
 
         for (int j = 0; j < TMP_PRO_VERTICES; j++)
         {

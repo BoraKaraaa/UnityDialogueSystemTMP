@@ -167,7 +167,7 @@ public abstract class DialogueHolder : MonoBehaviour
         }
     }
 
-    protected virtual void CheckAndStartTextEffect()
+    private void CheckAndStartTextEffect()
     {
         if (textEffect != ETextEffects.None && textEffectRoutine == null)
         {
@@ -182,7 +182,7 @@ public abstract class DialogueHolder : MonoBehaviour
         }
     }
 
-    protected virtual void CheckAndStartWordColorEffect()
+    private void CheckAndStartWordColorEffect()
     {
 
         if (wordColorIndex != null && changeWordColorRoutine == null)

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class DialogueTrigger : Singletonn<DialogueTrigger>
 {
@@ -15,40 +14,41 @@ public class DialogueTrigger : Singletonn<DialogueTrigger>
     [Space(3)]
     [SerializeField] List<int> targetDialogueHolderIndex;
 
-    private Queue<Dialogue> dialogueQueue;
-
     private int index = 0;
-
-    public Action OnDialogudeTriggerInit;
-
-    private void Start()
+    
+    /// <summary>
+    ///   <para> Sets the given dialogue order in --dialogueList-- </para>
+    /// </summary>
+    /// <param name="newDialogue"> Dialogue Scriptable Object to be added </param>
+    /// <param name="effectDialogueHolderIndex"> Dialogue Holder (in Dialogue Manager) to be affected </param>
+    /// <param name="addDialogueIndex"> Order in --dialogueList-- </param>
+    public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex, int addDialogueIndex = -1)
     {
-        dialogueQueue = new Queue<Dialogue>();
-
-        int startIndex = 0;
-
-        for (int i = startIndex; i < dialogueList.Count; i++)
+        if (addDialogueIndex == -1)
         {
-            dialogueQueue.Enqueue(dialogueList[i]);
+            dialogueList.Insert(dialogueList.Count, newDialogue);
+        }
+        else
+        {
+            dialogueList.Insert(addDialogueIndex, newDialogue);
         }
         
-        OnDialogudeTriggerInit?.Invoke();
-    }
-    
-    public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex)
-    {
-        dialogueList.Add(newDialogue);
-        dialogueQueue.Enqueue(newDialogue);
         targetDialogueHolderIndex.Add(effectDialogueHolderIndex);
     }
-
+    
+    /// <summary>
+    ///   <para> Triggers the Dialogue order of --dialogueList-- </para>
+    /// </summary>
     public void TriggerDialogue()
     {
-        if(DialogueManager.Instance.IsDialogueStarted || dialogueQueue.Count > 0)
+        if(DialogueManager.Instance.IsDialogueStarted || dialogueList.Count > 0)
         {
             if (!DialogueManager.Instance.IsDialogueStarted)
             {
-                DialogueManager.Instance.StartDialogue(dialogueQueue.Dequeue(), targetDialogueHolderIndex[index++]);
+                Dialogue dialogue = dialogueList[0];
+                dialogueList.RemoveAt(0);
+                
+                DialogueManager.Instance.StartDialogue(dialogue, targetDialogueHolderIndex[index++]);
             }
             else
             {

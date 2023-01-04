@@ -36,6 +36,11 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     public bool DialogueStopGame { get; set; } = false;
     
+    /// <summary>
+    ///   <para> Starting to given dialogue </para>
+    /// </summary>
+    /// <param name="dialogue"> Dialogue Scriptable Object to be started </param>
+    /// <param name="activeTextIndexInScene"> Dialogue Holder (in Dialogue Manager) to be affected </param>
     public void StartDialogue(Dialogue dialogue, int activeTextIndexInScene)
     {
         isDialogueStarted = true;
@@ -53,7 +58,11 @@ public class DialogueManager : Singletonn<DialogueManager>
 
         DisplayNextSentence();
     }
-
+    
+    /// <summary>
+    ///   <para> Processing given dialogue.
+    ///             Each DisplayNextSentence call write one sentence </para>
+    /// </summary>
     public void DisplayNextSentence()
     {
         if (isCoroutineEnd == false)
@@ -79,13 +88,17 @@ public class DialogueManager : Singletonn<DialogueManager>
             activeDialogueHolder.audioSource.clip = realDialogue.textAudios[dialogueIndex];
         }
 
-        //GeneralDialogueColorController.Instance.ClearWordColorList(dialogueHolderText);
+        GeneralDialogueColorController.Instance.ClearWordColorList(activeDialogueHolder.dialogueHolderText);
         GeneralDialogueImageController.Instance.ClearImages(activeDialogueHolder.dialogueHolderText);
 
         StopAllCoroutines();
         StartCoroutine(TypeSentence(realDialogue));
     }
-
+    
+    /// <summary>
+    ///   <para> Writes proper sentence char by char </para>
+    /// </summary>
+    /// <param name="realDialogue"> realDialogue is an Object which is represent a Dialogue </param>
     IEnumerator TypeSentence(RealDialogue realDialogue)
     {
         if (!realDialogue.overWrite[dialogueIndex])
@@ -126,7 +139,8 @@ public class DialogueManager : Singletonn<DialogueManager>
             }
             else
             {
-                //GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
+
+                GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
                     
                 if (GeneralDialogueImageController.Instance.TryToAddImage(word))
                 {
@@ -134,13 +148,31 @@ public class DialogueManager : Singletonn<DialogueManager>
                         GeneralDialogueImageController.Instance.
                             AddImageAfterWord(activeDialogueHolder.dialogueHolderText, word, wordCounter);
 
-                    wordCounter++;
+                   // wordCounter++;
                 }
                 
                 wordCounter++;
                 word = String.Empty;
             }
 
+        }
+        
+        // Check the last word
+        if (word != String.Empty)
+        {
+            GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
+                    
+            if (GeneralDialogueImageController.Instance.TryToAddImage(word))
+            {
+                activeDialogueHolder.dialogueHolderText.text += 
+                    GeneralDialogueImageController.Instance.
+                        AddImageAfterWord(activeDialogueHolder.dialogueHolderText, word, wordCounter);
+
+                //wordCounter++;
+            } 
+            
+            wordCounter++;
+            word = String.Empty;
         }
 
         dialogueIndex++;
@@ -149,7 +181,11 @@ public class DialogueManager : Singletonn<DialogueManager>
         EndOneDialogueCustomActions();
         OnOneDialogueEndActions?.Invoke();
     }
-
+    
+    /// <summary>
+    ///   <para> Writes proper sentence char by char </para>
+    /// </summary>
+    /// <param name="realDialogue"> realDialogue is an Object which is represent a Dialogue </param>
     private void EndDialogue()
     {
         isDialogueStarted = false;
@@ -164,7 +200,11 @@ public class DialogueManager : Singletonn<DialogueManager>
         EndDialogueCustomActions();
 
     }
-
+    
+    /// <summary>
+    ///   <para> Activates suitable dialogueHolder using index </para>
+    /// </summary>
+    /// <param name="index"> index which is represent suitable dialogueHolder in --dialogueHolders-- list  </param>
     private void SetActiveTextInScene(int index)
     {
         if (activeDialogueHolder != null)
@@ -177,7 +217,10 @@ public class DialogueManager : Singletonn<DialogueManager>
 
         activeDialogueHolderAnimator = activeDialogueHolder.GetComponent<Animator>();
     }
-
+    
+    /// <summary>
+    ///   <para> Skips the current dialogue </para>
+    /// </summary>
     public void SkipDialogue()
     {
         isCoroutineEnd = true;

@@ -1,13 +1,7 @@
 using UnityEngine;
 
-public class DialogueData : MonoBehaviour
+public class DialogueData : SingletonnPersistent<DialogueData>
 {
-    private static DialogueData _instance;
-
-    public static DialogueData Instance
-    {
-        get { return _instance; }
-    }
 
     private const string currDialogueIndex = "CURR_DIALOGUE_INDEX";
     
@@ -17,15 +11,8 @@ public class DialogueData : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-
         PlayerPrefs.SetInt(currDialogueIndex, PlayerPrefs.GetInt(currDialogueIndex, initialDialogueIndex));
         PlayerPrefs.SetInt(savedDialogueIndex, PlayerPrefs.GetInt(savedDialogueIndex, initialDialogueIndex));
-
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnDestroy()
