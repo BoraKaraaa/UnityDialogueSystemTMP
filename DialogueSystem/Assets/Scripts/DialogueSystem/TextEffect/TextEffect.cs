@@ -14,6 +14,6 @@ public class TextEffect : MonoBehaviour
             TextEffectsController.Instance.DoTextEffect(tmpText, customTextEffect);
 
         if (diffColorWordIndex != -1)
-            TextEffectsController.Instance.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
+            TextColorController.Instance.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
     }
 }

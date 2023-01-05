@@ -9,8 +9,10 @@ public class DialogueData : SingletonnPersistent<DialogueData>
     
     private int initialDialogueIndex = 0;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        
         PlayerPrefs.SetInt(currDialogueIndex, PlayerPrefs.GetInt(currDialogueIndex, initialDialogueIndex));
         PlayerPrefs.SetInt(savedDialogueIndex, PlayerPrefs.GetInt(savedDialogueIndex, initialDialogueIndex));
     }

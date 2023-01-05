@@ -90,7 +90,8 @@ public class DialogueManager : Singletonn<DialogueManager>
 
         GeneralDialogueColorController.Instance.ClearWordColorList(activeDialogueHolder.dialogueHolderText);
         GeneralDialogueImageController.Instance.ClearImages(activeDialogueHolder.dialogueHolderText);
-
+        GeneralDialogueEffectController.Instance.ClearWordEffectList(activeDialogueHolder.dialogueHolderText);
+        
         StopAllCoroutines();
         StartCoroutine(TypeSentence(realDialogue));
     }
@@ -139,9 +140,9 @@ public class DialogueManager : Singletonn<DialogueManager>
             }
             else
             {
-
                 GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
-                    
+                GeneralDialogueEffectController.Instance.TryToAddEffectToWord(word, wordCounter);
+                
                 if (GeneralDialogueImageController.Instance.TryToAddImage(word))
                 {
                     activeDialogueHolder.dialogueHolderText.text += 
@@ -159,7 +160,8 @@ public class DialogueManager : Singletonn<DialogueManager>
         if (word != String.Empty)
         {
             GeneralDialogueColorController.Instance.TryToAddColorToWord(word, wordCounter);
-                    
+            GeneralDialogueEffectController.Instance.TryToAddEffectToWord(word, wordCounter);
+            
             if (GeneralDialogueImageController.Instance.TryToAddImage(word))
             {
                 activeDialogueHolder.dialogueHolderText.text += 

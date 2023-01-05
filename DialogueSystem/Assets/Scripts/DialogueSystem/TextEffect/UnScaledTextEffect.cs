@@ -14,6 +14,6 @@ public class UnScaledTextEffect : MonoBehaviour
             UnScaledTextEffectController.Instance.DoTextEffect(tmpText, customTextEffect);
 
         if (diffColorWordIndex != -1)
-            UnScaledTextEffectController.Instance.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
+            TextColorController.Instance.ChangeWordColor(tmpText, diffColorWordIndex, textColor);
     }
 }

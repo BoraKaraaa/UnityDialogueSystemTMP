@@ -23,7 +23,7 @@ public class GeneralDialogueColorController : Singletonn<GeneralDialogueColorCon
             wordToColorDictionary.Add(textToColor.textKey, textToColor);
         }
     }
-
+    
     public void TryToAddColorToWord(string word, int wordIndex)
     {
         if (!wordToColorDictionary.ContainsKey(word))
@@ -60,7 +60,7 @@ public class GeneralDialogueColorController : Singletonn<GeneralDialogueColorCon
             {
                 foreach (var textIndexPair in wordToColorList)
                 {
-                    TextEffectsController.Instance.ChangeWordColor(tmpText, textIndexPair.textIndex, 
+                    TextColorController.Instance.ChangeWordColor(tmpText, textIndexPair.textIndex, 
                         wordToColorDictionary[textIndexPair.textKey].wordColor);
                 }
             }

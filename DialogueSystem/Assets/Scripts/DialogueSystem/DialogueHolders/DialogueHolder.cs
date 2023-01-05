@@ -27,7 +27,11 @@ public abstract class DialogueHolder : MonoBehaviour
 
     private Coroutine textEffectRoutine = null;
     private Coroutine changeWordColorRoutine = null;
-
+    
+    /// <summary>
+    ///   <para> Subscribe Dialogue Manager Actions
+    ///             Called by Dialogue Manager When this --DialogueHolder-- active </para>
+    /// </summary>
     public void SubsActions()
     {
         DialogueManager.Instance.OnStartDialogueActions += OnStartDialogueActions;
@@ -35,7 +39,11 @@ public abstract class DialogueHolder : MonoBehaviour
         DialogueManager.Instance.OnEndDialogueActions += OnEndDialogueActions;
         DialogueManager.Instance.OnOneDialogueEndActions += OnOneDialogueEndActions;
     }
-
+    
+    /// <summary>
+    ///   <para> UnSubscribe Dialogue Manager Actions
+    ///             Called by Dialogue Manager When this --DialogueHolder-- inactive </para>
+    /// </summary>
     public void UnSubsActions()
     {
         DialogueManager.Instance.OnStartDialogueActions -= OnStartDialogueActions;
@@ -43,7 +51,7 @@ public abstract class DialogueHolder : MonoBehaviour
         DialogueManager.Instance.OnEndDialogueActions -= OnEndDialogueActions;
         DialogueManager.Instance.OnOneDialogueEndActions -= OnOneDialogueEndActions;
     }
-
+    
     private void OnDestroy()
     {
         DialogueManager.Instance.OnStartDialogueActions -= OnStartDialogueActions;
@@ -55,7 +63,7 @@ public abstract class DialogueHolder : MonoBehaviour
     protected void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
     protected void SetWordColorIndex(WordColorIndex wordColorIndex) => this.wordColorIndex = wordColorIndex;
     protected abstract void InitReferences(ref RealDialogue realDialogue);
-
+    
     protected virtual void OnStartDialogueActions(Dialogue dialogue)
     {
         if (DialogueStopGame)
@@ -78,7 +86,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
     protected virtual RealDialogue OnCustomDialogueActions(int index)
     {
-        TextEffectsController.Instance.ChangeWholeColor(dialogueHolderText, 
+        TextColorController.Instance.ChangeWholeColor(dialogueHolderText, 
             realDialogue.diffColor[index]);
         
         SetEtextEffects(realDialogue.textEffects[index]);
@@ -121,7 +129,11 @@ public abstract class DialogueHolder : MonoBehaviour
         StopChangeColor = true;
         HolderOnEndDialogueActions?.Invoke();
     }
-
+    
+    /// <summary>
+    ///   <para> Sets the dialogue Scriptable Object's default values to realDialogue </para>
+    /// <param name="index"> Corresponding sentences index </param>
+    /// </summary>
     protected virtual void SetDefaultValues(int index)
     {
         realDialogue.SetText(index, dialogue.sentences[index]); //Set Texts
@@ -132,7 +144,11 @@ public abstract class DialogueHolder : MonoBehaviour
         realDialogue.SetCustomOverWrite(index, dialogue.defOverWrites);
         realDialogue.SetCustomDiffColor(index, dialogue.defDiffColor[dialogue.characterCounts[index]]);
     }
-
+    
+    /// <summary>
+    ///   <para> Sets the dialogue Scriptable Object's custom values to realDialogue </para>
+    /// <param name="index"> Corresponding sentences index </param>
+    /// </summary>
     protected virtual void ControlCustomValues(int index)
     {
         if (index < dialogue.textWriteSpeeds.Count)
@@ -187,14 +203,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
         if (wordColorIndex != null && changeWordColorRoutine == null)
         {
-            if (DialogueStopGame)
-            {
-                changeWordColorRoutine = StartCoroutine(UnScaledChangeWordColor());
-            }
-            else
-            {
-                changeWordColorRoutine = StartCoroutine(ScaledChangeWordColor());
-            }
+            changeWordColorRoutine = StartCoroutine(ScaledChangeWordColor());
         }
     }
 
@@ -239,33 +248,11 @@ public abstract class DialogueHolder : MonoBehaviour
             {
                 foreach (int wordIndex in wordColorIndex.diffWordColorDics[i].wordId)
                 {
-                    TextEffectsController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, 
+                    TextColorController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, 
                         wordColorIndex.diffWordColorDics[i].diffColor);
                 }
             }
 
-            yield return null;
-        }
-    }
-
-    private IEnumerator UnScaledChangeWordColor()
-    {
-        while (true)
-        {
-            if (StopChangeColor)
-            {
-                yield break;
-            }
-            
-            for (int i = 0; ( wordColorIndex != null && i < wordColorIndex.diffWordColorDics.Count ); i++)
-            {
-                foreach (int wordIndex in wordColorIndex.diffWordColorDics[i].wordId)
-                {
-                    UnScaledTextEffectController.Instance.ChangeWordColor(dialogueHolderText, wordIndex, 
-                        wordColorIndex.diffWordColorDics[i].diffColor);
-                }
-            }
-            
             yield return null;
         }
     }
