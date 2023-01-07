@@ -9,6 +9,16 @@ public abstract class DialogueHolder : MonoBehaviour
     public AudioSource audioSource;
     public EDialogueEnd dialogueEnd;
 
+    [SerializeField] private bool dialogueStopGame;
+    public bool DialogueStopGame => dialogueStopGame;
+    
+    [Space(5)]
+    [Header("DialogueHolder Animations (NULLABLE)")]
+    [Space(5)]
+    [SerializeField] private Animator dialogueHolderAnimator = null;
+    [SerializeField] private string startDialogueAnimationStateName;
+    [SerializeField] private string endDialogueAnimationStateName;
+
     private ETextEffects textEffect = ETextEffects.None;
     private WordColorIndex wordColorIndex = null;
     private WordEffectIdnex wordEffectIdnex = null;
@@ -18,8 +28,6 @@ public abstract class DialogueHolder : MonoBehaviour
     public Action HolderOnOneDialogueEndActions;
     public Action HolderOnEndDialogueActions;
     
-    public bool DialogueStopGame;
-
     protected bool StopTextEffect { get; set; } = false;
     protected bool StopChangeColor { get; set; } = false;
 
@@ -84,6 +92,11 @@ public abstract class DialogueHolder : MonoBehaviour
         StopTextEffect = false;
         StopChangeColor = false;
         
+        if (dialogueHolderAnimator != null)
+        {
+            dialogueHolderAnimator.Play(startDialogueAnimationStateName);
+        }
+        
         HolderOnStartDialogueActions?.Invoke();
     }
 
@@ -114,6 +127,11 @@ public abstract class DialogueHolder : MonoBehaviour
         {
             DialogueManager.Instance.DialogueStopGame = false;
             Time.timeScale = 1f;
+        }
+        
+        if (dialogueHolderAnimator != null)
+        {
+            dialogueHolderAnimator.Play(endDialogueAnimationStateName);
         }
         
         if (dialogueEnd == EDialogueEnd.None)

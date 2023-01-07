@@ -13,39 +13,34 @@ MonoBehaviour:
   m_Name: testUIDialogue
   m_EditorClassIdentifier: 
   sentences:
-  - Merhaba ben can
-  - yarin sabah final itirazina gidicem
-  - merhaba ben bora
-  - 361 asistaninin anasini sikeyim
-  characterCounts: 00000000000000000100000001000000
+  - Hello
+  - Hi ?
+  characterCounts: 0000000001000000
   defOverWrites: 0
   defTextWriteSpeeds:
-  - 0
-  - 0
+  - 0.3
+  - 0.3
   defTextAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  defTextEffects: 0000000000000000
+  - {fileID: 8300000, guid: 39f811559540e7a4f8c727a4fd196529, type: 3}
+  - {fileID: 8300000, guid: fc4f84b4a278b8f48be9efb14191263d, type: 3}
+  defTextEffects: 0600000002000000
   defDiffColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  textWriteSpeeds:
-  - id: 3
-    textWriteSpeed: 0.5
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  textWriteSpeeds: []
   textAudios: []
-  textEffects:
-  - id: 3
-    textEffect: 4
+  textEffects: []
   overWrites: []
-  diffColor:
-  - id: 3
-    diffColor: {r: 1, g: 0, b: 0, a: 1}
-  - id: 3
-    diffColor: {r: 1, g: 0, b: 0, a: 1}
-  WordColorIndices:
-  - id: 3
-    diffWordColorDics: []
-  sprites: []
-  animators: []
-  defAnimatorStateNames: []
+  diffColor: []
+  WordColorIndices: []
+  WordEffectIndices: []
+  sprites:
+  - {fileID: 1679076186, guid: cf291001e59996943a1979103d9127f2, type: 3}
+  - {fileID: 401313741, guid: 92c58198102fef641a007c0fec2262d1, type: 3}
+  animators:
+  - {fileID: 9100000, guid: 1c19c1d71d8c554439ed8416cfbc67cb, type: 2}
+  - {fileID: 9100000, guid: 81fcfa644f90ee349a60b5afc9c37dfa, type: 2}
+  defAnimatorStateNames:
+  - Talking
+  - Talking
   animatorStateNames: []

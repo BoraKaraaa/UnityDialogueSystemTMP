@@ -274,8 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4275828e8962542945256f85557064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueList: []
-  targetDialogueHolderIndex: 
+  dialogueList:
+  - {fileID: 11400000, guid: 7edab701f94162a4e9846e1e27abb4a3, type: 2}
+  - {fileID: 11400000, guid: 06b6cd906c09e524799eeb1cd5bf44b6, type: 2}
+  - {fileID: 11400000, guid: 6c64e7e2e987d1347b8ed45b065ef197, type: 2}
+  targetDialogueHolderIndex: 000000000100000002000000
 --- !u!1 &5631226505947165848
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,10 +358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d4f12dedeb01144b0d593835bd5f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueHolders: []
+  dialogueHolders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fastWriteSpeed: 0.04
-  startDialogueAnimationStateName: 
-  endDialogueAnimationStateName: 
 --- !u!1 &7078684606000384379
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,6 @@ public class DialogueManager : Singletonn<DialogueManager>
     private DialogueHolder activeDialogueHolder = null;
     public DialogueHolder ActiveDialogueHolder => activeDialogueHolder;
 
-    private Animator activeDialogueHolderAnimator = null;
-
     [SerializeField] private float fastWriteSpeed = 0.04f;
     private bool isCoroutineEnd = true;
     private bool fastWrite = false;
@@ -21,10 +19,6 @@ public class DialogueManager : Singletonn<DialogueManager>
 
     private string word = String.Empty;
     private int wordCounter = 0;
-    
-    [Space(5)]
-    [SerializeField] private string startDialogueAnimationStateName;
-    [SerializeField] private string endDialogueAnimationStateName;
 
     public Action<Dialogue> OnStartDialogueActions;
     public Func<int, RealDialogue> OnCustomDialogueActions;
@@ -47,11 +41,6 @@ public class DialogueManager : Singletonn<DialogueManager>
         maxSize = dialogue.sentences.Length;
         
         SetActiveTextInScene(activeTextIndexInScene);
-
-        if (activeDialogueHolderAnimator != null)
-        {
-            activeDialogueHolderAnimator.Play(startDialogueAnimationStateName, 0);
-        }
 
         OnStartDialogueActions?.Invoke(dialogue);
         StartDialogueCustomActions();
@@ -189,11 +178,6 @@ public class DialogueManager : Singletonn<DialogueManager>
         isDialogueStarted = false;
         dialogueIndex = 0;
 
-        if (activeDialogueHolderAnimator != null)
-        {
-            activeDialogueHolderAnimator.Play(endDialogueAnimationStateName, 0);
-        }
-
         OnEndDialogueActions?.Invoke();
         EndDialogueCustomActions();
 
@@ -212,8 +196,6 @@ public class DialogueManager : Singletonn<DialogueManager>
         
         activeDialogueHolder = dialogueHolders[index];
         activeDialogueHolder.SubsActions();
-
-        activeDialogueHolderAnimator = activeDialogueHolder.GetComponent<Animator>();
     }
     
     /// <summary>

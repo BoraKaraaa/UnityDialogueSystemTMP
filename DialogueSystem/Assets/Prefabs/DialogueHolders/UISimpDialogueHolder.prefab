@@ -74,8 +74,11 @@ MonoBehaviour:
   dialogueHolderText: {fileID: 1664318563102314277}
   audioSource: {fileID: 1664318562723627377}
   dialogueEnd: 0
-  DialogueStopGame: 0
-  dialogueAnimator: {fileID: 1664318562072604010}
+  dialogueStopGame: 0
+  dialogueHolderAnimator: {fileID: 1664318562072604010}
+  startDialogueAnimationStateName: UIDialogueOpen
+  endDialogueAnimationStateName: UIDialogueEnd
+  dialogueAnimator: {fileID: 0}
 --- !u!1 &1664318562723627379
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +128,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

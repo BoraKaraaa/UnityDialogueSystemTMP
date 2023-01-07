@@ -30,6 +30,7 @@ public abstract class Dialogue : ScriptableObject
     
     [Space(5)]
     public bool defOverWrites;
+    [Space(5)]
     public List<float> defTextWriteSpeeds;
     public List<AudioClip> defTextAudios;
     public List<ETextEffects> defTextEffects;

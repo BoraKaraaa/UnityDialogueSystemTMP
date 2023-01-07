@@ -13,29 +13,29 @@ MonoBehaviour:
   m_Name: testBasic
   m_EditorClassIdentifier: 
   sentences:
-  - COK MOK COK MOK COK MOK COK
-  - 'BIZIM ADIMIZ '
-  - HINKIR MUNKUR
-  characterCounts: 000000000100000000000000
+  - Hi there !!!
+  - Who is there ?
+  - "\rit doesn't matter who i am"
+  - just listen to me !
+  - 'oo..
+
+    okay '
+  characterCounts: 0000000001000000000000000000000001000000
   defOverWrites: 0
   defTextWriteSpeeds:
-  - 0.4
-  - 0.4
+  - 0.2
+  - 0.2
   defTextAudios:
-  - {fileID: 8300000, guid: fc4f84b4a278b8f48be9efb14191263d, type: 3}
   - {fileID: 8300000, guid: 39f811559540e7a4f8c727a4fd196529, type: 3}
+  - {fileID: 8300000, guid: fc4f84b4a278b8f48be9efb14191263d, type: 3}
   defTextEffects: 0600000002000000
   defDiffColor:
-  - {r: 0.40427297, g: 1, b: 0.2783019, a: 1}
-  - {r: 0.8030017, g: 1, b: 0.13679248, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []
   overWrites: []
   diffColor: []
-  WordColorIndices:
-  - id: 0
-    diffWordColorDics:
-    - wordId: 010000000300000005000000
-      diffColor: {r: 1, g: 0.4036057, b: 0, a: 1}
+  WordColorIndices: []
   WordEffectIndices: []

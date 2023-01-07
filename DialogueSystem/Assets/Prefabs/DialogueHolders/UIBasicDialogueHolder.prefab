@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TEMPORARY TEXT <sprite=0>
+  m_text: TEMPORARY TEXT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a3d287b9aab183d4184063fdb866f207, type: 2}
   m_sharedMaterial: {fileID: 762700053940112406, guid: a3d287b9aab183d4184063fdb866f207, type: 2}
@@ -188,8 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueHolderText: {fileID: 8983521618998989892}
   audioSource: {fileID: 8983521619697231500}
-  dialogueEnd: 0
-  DialogueStopGame: 0
+  dialogueEnd: 1
+  dialogueStopGame: 0
+  dialogueHolderAnimator: {fileID: 0}
+  startDialogueAnimationStateName: 
+  endDialogueAnimationStateName: 
 --- !u!1 &8983521619697231502
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +242,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

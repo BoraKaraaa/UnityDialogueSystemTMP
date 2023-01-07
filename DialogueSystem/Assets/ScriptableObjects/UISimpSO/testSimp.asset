@@ -12,26 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7d5186e9d93614ebe9d98e434783fa, type: 3}
   m_Name: testSimp
   m_EditorClassIdentifier: 
-  sentences: []
-  characterCounts: 
+  sentences:
+  - ESCAPE FROM THE TIME
+  characterCounts: 00000000
+  defOverWrites: 0
   defTextWriteSpeeds:
-  - 0
-  - 0
+  - 0.1
   defTextAudios:
-  - {fileID: 0}
-  - {fileID: 0}
-  defTextEffects: 0000000000000000
-  defOverWrites: 0000
-  defDiffColorWordIndex: 0000000000000000
+  - {fileID: 8300000, guid: f9138012d6416054295b7bdf716014ce, type: 3}
+  defTextEffects: 02000000
   defDiffColor:
-  - {r: -3.2800347e+26, g: 4.4e-43, b: 0, a: 0}
-  - {r: -1.551724e-38, g: 4.37e-43, b: 4.6e-44, a: 2.6540261e+20}
+  - {r: 1, g: 1, b: 1, a: 1}
   textWriteSpeeds: []
   textAudios: []
   textEffects: []
   overWrites: []
-  diffColorWordIndex: []
   diffColor: []
-  animators: []
-  defAnimatorStateNames: 
+  WordColorIndices: []
+  WordEffectIndices: []
+  animators:
+  - {fileID: 9100000, guid: de0af0d6a301fab4090361096c4d186b, type: 2}
+  defAnimatorStateNames:
+  - fade
   animatorStateNames: []

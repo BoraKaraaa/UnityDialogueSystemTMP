@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class UIDialogueHolder : DialogueHolder
 {
+    [Space(10)]
+    [Header("UIDialogueHolder Parameters")]
     [SerializeField] private Image dialogueHolderImage;
     [SerializeField] private Animator dialogueAnimator;
 
@@ -27,12 +29,16 @@ public class UIDialogueHolder : DialogueHolder
 
     protected override void SetDefaultValues(int index)
     {
+        base.SetDefaultValues(index);
+        
         realUIDialogue.SetCustomAnimatorStateName(index, 
             uiDialogue.defAnimatorStateNames[uiDialogue.characterCounts[index]]);
     }
 
     protected override void ControlCustomValues(int index)
     {
+        base.ControlCustomValues(index);
+        
         if (index < uiDialogue.animatorStateNames.Count)
         {
             realUIDialogue.SetCustomAnimatorStateName(uiDialogue.animatorStateNames[index].id, 

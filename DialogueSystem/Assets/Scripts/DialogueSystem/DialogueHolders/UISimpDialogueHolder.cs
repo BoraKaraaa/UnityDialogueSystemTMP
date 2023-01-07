@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class UISimpDialogueHolder : DialogueHolder
 {
+    [Space(10)]
+    [Header("UISimpDialogueHolder Parameters")]
     [SerializeField] private Animator dialogueAnimator;
 
     private RealUISimpDialogue realUISimpDialogue = null;
@@ -25,12 +27,16 @@ public class UISimpDialogueHolder : DialogueHolder
     
     protected override void SetDefaultValues(int index)
     {
+        base.SetDefaultValues(index);
+        
         realUISimpDialogue.SetCustomAnimatorStateName(index, 
             uiSimpDialogue.defAnimatorStateNames[uiSimpDialogue.characterCounts[index]]);
     }
 
     protected override void ControlCustomValues(int index)
     {
+        base.ControlCustomValues(index);
+        
         if (index < uiSimpDialogue.animatorStateNames.Count)  
             realUISimpDialogue.SetCustomAnimatorStateName(uiSimpDialogue.animatorStateNames[index].id, uiSimpDialogue.animatorStateNames[index].animationStateName);
     }
