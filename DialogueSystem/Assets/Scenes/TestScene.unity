@@ -615,10 +615,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1411226229084875044, guid: 31c2ee6d4873fea49a3fd35b520fe98a, type: 3}
-      propertyPath: textToEffectList.Array.data[0].textKey
-      value: COK
-      objectReference: {fileID: 0}
     - target: {fileID: 5631226505947165848, guid: 31c2ee6d4873fea49a3fd35b520fe98a, type: 3}
       propertyPath: m_Name
       value: DialogueSystem

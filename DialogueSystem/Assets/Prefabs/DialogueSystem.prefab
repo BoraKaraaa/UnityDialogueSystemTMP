@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8b9093ba79a6b49a44cb5f92973d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToEffectList:
-  - textKey: COK
-    wordEffect: 2
+  textToEffectList: []
 --- !u!1 &1256771484935131784
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,13 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d19f8b20898d0a4dac80fda3e766579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToSpriteList:
-  - textKey: COK
-    tmpSprite: {fileID: 11400000, guid: f3521405765b6384bb297c144dc398a6, type: 2}
-    spriteAssetId: 5
-  - textKey: NASIL
-    tmpSprite: {fileID: 11400000, guid: f3521405765b6384bb297c144dc398a6, type: 2}
-    spriteAssetId: 3
+  textToSpriteList: []
 --- !u!1 &4060364530266318341
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,9 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9da5d508d1c49247a9c0876aa526c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToColorList:
-  - textKey: COK
-    wordColor: {r: 0.8584906, g: 0.5709772, b: 0.5709772, a: 1}
+  textToColorList: []
 --- !u!1 &7198432431322172824
 GameObject:
   m_ObjectHideFlags: 0
