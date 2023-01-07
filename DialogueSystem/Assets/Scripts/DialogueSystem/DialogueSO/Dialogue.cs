@@ -44,6 +44,7 @@ public abstract class Dialogue : ScriptableObject
     public List<OverWriteDic> overWrites;
     public List<DiffColorDic> diffColor;
     public List<WordColorIndex> WordColorIndices;
+    public List<WordEffectIdnex> WordEffectIndices;
     
 }
 
@@ -56,6 +57,7 @@ public abstract class RealDialogue
     public bool[] overWrite;
     public Color[] diffColor;
     public WordColorIndex[] wordColorIndices;
+    public WordEffectIdnex[] wordEffectIndices;
 
     private int arraysLength;
     public virtual void Init(Dialogue dialogue)
@@ -69,6 +71,7 @@ public abstract class RealDialogue
         overWrite = new bool[arraysLength];
         diffColor = new Color[arraysLength];
         wordColorIndices = new WordColorIndex[arraysLength];
+        wordEffectIndices = new WordEffectIdnex[arraysLength];
     }
 
     public void SetText(int index, string sentence)
@@ -104,6 +107,11 @@ public abstract class RealDialogue
     public void SetDiffWordColorDic(int index, WordColorIndex wordColorIndex)
     {
         wordColorIndices[index] = wordColorIndex;
+    }
+    
+    public void SetDiffWordEffectDic(int index, WordEffectIdnex wordEffectIndex)
+    {
+        wordEffectIndices[index] = wordEffectIndex;
     }
 
 }

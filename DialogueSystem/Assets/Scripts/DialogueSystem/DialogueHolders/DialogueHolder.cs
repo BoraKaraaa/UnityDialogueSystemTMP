@@ -11,6 +11,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
     private ETextEffects textEffect = ETextEffects.None;
     private WordColorIndex wordColorIndex = null;
+    private WordEffectIdnex wordEffectIdnex = null;
     
     public Action HolderOnStartDialogueActions;
     public Action<RealDialogue, int> HolderOnCustomDialogueActions;
@@ -27,6 +28,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
     private Coroutine textEffectRoutine = null;
     private Coroutine changeWordColorRoutine = null;
+    private Coroutine changeWordEffectRoutine = null;
     
     /// <summary>
     ///   <para> Subscribe Dialogue Manager Actions
@@ -62,6 +64,7 @@ public abstract class DialogueHolder : MonoBehaviour
 
     protected void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
     protected void SetWordColorIndex(WordColorIndex wordColorIndex) => this.wordColorIndex = wordColorIndex;
+    protected void SetWordEffectIndex(WordEffectIdnex wordEffectIdnex) => this.wordEffectIdnex = wordEffectIdnex;
     protected abstract void InitReferences(ref RealDialogue realDialogue);
     
     protected virtual void OnStartDialogueActions(Dialogue dialogue)
@@ -90,9 +93,11 @@ public abstract class DialogueHolder : MonoBehaviour
             realDialogue.diffColor[index]);
         
         SetEtextEffects(realDialogue.textEffects[index]);
-        CheckAndStartTextEffect();
-        
+
+        SetWordEffectIndex(realDialogue.wordEffectIndices[index]);
         SetWordColorIndex(realDialogue.wordColorIndices[index]);
+        
+        CheckAndStartTextEffect();
         CheckAndStartWordColorEffect();
 
         return realDialogue;
@@ -181,6 +186,11 @@ public abstract class DialogueHolder : MonoBehaviour
             realDialogue.SetDiffWordColorDic(dialogue.WordColorIndices[index].id, 
                 dialogue.WordColorIndices[index]);
         }
+        if (index < dialogue.WordEffectIndices.Count)
+        {
+            realDialogue.SetDiffWordEffectDic(dialogue.WordEffectIndices[index].id, 
+                dialogue.WordEffectIndices[index]);
+        }
     }
 
     private void CheckAndStartTextEffect()
@@ -196,6 +206,19 @@ public abstract class DialogueHolder : MonoBehaviour
                 textEffectRoutine = StartCoroutine(ScaledDoTextEffect());
             }
         }
+
+        if (wordEffectIdnex != null && changeWordEffectRoutine == null)
+        {
+            if (DialogueStopGame)
+            {
+                changeWordEffectRoutine = StartCoroutine(UnScaledMultipleWordDoTextEffect());
+            }
+            else
+            {
+                changeWordEffectRoutine = StartCoroutine(ScaledMultipleWordDoTextEffect());
+            }
+        }
+        
     }
 
     private void CheckAndStartWordColorEffect()
@@ -215,11 +238,35 @@ public abstract class DialogueHolder : MonoBehaviour
             {
                 yield break;
             }
-            
+
             TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
+
             yield return null;
         }
     }
+    
+    private IEnumerator ScaledMultipleWordDoTextEffect()
+    {
+        while (true)
+        {
+            if (StopTextEffect)
+            {
+                yield break;
+            }
+            
+            for (int i = 0; ( wordEffectIdnex != null && i < wordEffectIdnex.diffWordEffectDics.Count ); i++)
+            {
+                foreach (int wordIndex in wordEffectIdnex.diffWordEffectDics[i].wordId)
+                {
+                    TextEffectsController.Instance.DoTextEffect(dialogueHolderText, wordIndex, 
+                        wordEffectIdnex.diffWordEffectDics[i].textEffect);
+                }
+            }
+
+            yield return null;
+        }
+    }
+    
 
     private IEnumerator UnScaledDoTextEffect()
     {
@@ -231,6 +278,29 @@ public abstract class DialogueHolder : MonoBehaviour
             }
             
             UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, textEffect);
+
+            yield return null;
+        }
+    }
+    
+    private IEnumerator UnScaledMultipleWordDoTextEffect()
+    {
+        while (true)
+        {
+            if (StopTextEffect)
+            {
+                yield break;
+            }
+            
+            for (int i = 0; ( wordEffectIdnex != null && i < wordEffectIdnex.diffWordEffectDics.Count ); i++)
+            {
+                foreach (int wordIndex in wordEffectIdnex.diffWordEffectDics[i].wordId)
+                {
+                    UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, wordIndex, 
+                        wordEffectIdnex.diffWordEffectDics[i].textEffect);
+                }
+            }
+
             yield return null;
         }
     }

@@ -56,6 +56,19 @@ public class WordColorIndex
     public List<DiffWordColorDic> diffWordColorDics;
 }
 
+[System.Serializable]
+public class DiffWordEffectDic {
+    public List<int> wordId;
+    public ETextEffects textEffect;
+}
+
+[System.Serializable]
+public class WordEffectIdnex
+{
+    public int id;
+    public List<DiffWordEffectDic> diffWordEffectDics;
+}
+
 /// Additional Dialogue Data
 
 [System.Serializable]

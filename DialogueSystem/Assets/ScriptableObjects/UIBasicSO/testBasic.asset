@@ -38,3 +38,4 @@ MonoBehaviour:
     diffWordColorDics:
     - wordId: 010000000300000005000000
       diffColor: {r: 1, g: 0.4036057, b: 0, a: 1}
+  WordEffectIndices: []
