@@ -20,15 +20,31 @@ Assets\Prefabs\DialogueSystem
 ### Dialogue Manager
 ![DialogueManagerR](https://user-images.githubusercontent.com/72511237/211634812-3e5d5b8e-b423-49e3-9e63-c789a117f531.PNG)
 
+Dialogue Holder is a Text Area UI that holds sentences
+You can crate any amount of Dialogue Holder for dialogue in different places
+
+Set Dialogue Holders References in any order (this indices will be important DialogueTrigger Script) in Dialogue Manager
+
+For fast write just call trigger dialogue when one dialogue was running
+
+https://user-images.githubusercontent.com/72511237/211645412-768ee27f-9e6c-467f-9570-ad4fe0cb4803.mp4
+
 
 ### Dialogue Trigger
 ![DialogueTrigger](https://user-images.githubusercontent.com/72511237/211634918-9666d56d-0444-45ec-9d6b-f1c69b78be2f.PNG)
 
 Create Dialogue Scriptable Object for your custom dialogues and assign Dialogue List in order
-If you want add custom dialogue at runtime  
+If you want add custom dialogue at runtime call SetDialogue() func
 
 ```C#
-public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex, int addDialogueIndex = -1)
+    /// <summary>
+    ///   <para> Sets the given dialogue order in --dialogueList-- </para>
+    /// </summary>
+    /// <param name="newDialogue"> Dialogue Scriptable Object to be added </param>
+    /// <param name="effectDialogueHolderIndex"> Dialogue Holder (in Dialogue Manager) to be affected </param>
+    /// <param name="addDialogueIndex"> Order in --dialogueList-- </param>
+
+    public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex, int addDialogueIndex = -1)
     {
         if (addDialogueIndex == -1)
         {
@@ -43,8 +59,7 @@ public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex, int
     }
 ```
 
-Dialogue Holder is a Text Area that hold dialogues 
-You can crate any amount of Dialogue Holder
+Target Dialogue Holder index represent which Dialogue Holder you want to use
 
 ## Licanse 
 
