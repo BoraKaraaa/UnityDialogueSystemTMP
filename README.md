@@ -10,6 +10,31 @@ https://user-images.githubusercontent.com/72511237/211632477-5a0d6d56-f0d7-4651-
 
 ## Usage
 
+### Dialogue Scriptable Objects
+
+```bash
+Crate\ScriptableObjects\UIDialogueScriptableObject
+```
+
+![dialogueSO](https://user-images.githubusercontent.com/72511237/211653643-b34e0b7a-bd8d-4e79-b3d8-778a3a8edab2.PNG)
+
+You need to write 
+- Sentences
+- Character counts for who belongs to which sentences ( starts with 0 !! )
+- Dialogue Default Values ( Dialogue Default List's lengths need to be equal character count's max index)
+What Dialogue Default Values include
+- Text Write Speeds
+- Text Audios
+- Text Effects
+- Text Colors
+
+
+![dialogueSpecificSO](https://user-images.githubusercontent.com/72511237/211653686-131c880c-dfed-4471-b485-ba2069a18744.PNG)
+
+And there is another part for specific values for dialogues (working like dictionaries)
+Select specific sentences index and the value you want=
+
+
 Crate DialogueSystem Prefab from
 ```bash
 Assets\Prefabs\DialogueSystem
@@ -102,7 +127,6 @@ https://www.youtube.com/watch?v=FgWVW2PL1bQ&list=LL&index=2
 
 I use generic Singleton class from GitHub that does not belong to me
 When I got the code, I forgot to save the repo, if the person who belongs to it can reach me, I can add it too :)
-...
 
 
 ## Licanse
