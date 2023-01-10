@@ -32,7 +32,7 @@ What Dialogue Default Values include:
 ![dialogueSpecificSO](https://user-images.githubusercontent.com/72511237/211653686-131c880c-dfed-4471-b485-ba2069a18744.PNG)
 
 And there is another part for specific values for dialogues (working like dictionaries)
-Select specific sentences index and the value you want=
+Select specific sentences index and the value you want <br />
 
 
 
