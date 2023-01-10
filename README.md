@@ -8,7 +8,7 @@ Unity Dialogue System using Text Mesh Pro (TMP) for
 https://user-images.githubusercontent.com/72511237/211632477-5a0d6d56-f0d7-4651-ab35-66455ba4236f.mp4
 
 
-## Usage <br />
+## Usage
 
 Crate DialogueSystem Prefab from
 ```bash
@@ -17,7 +17,7 @@ Assets\Prefabs\DialogueSystem
 
 ![DialogueSystemPrefab](https://user-images.githubusercontent.com/72511237/211633753-18a8d19b-7468-462a-abaf-38b1e259137a.PNG)
 
-### Dialogue Manager <br />
+### Dialogue Manager
 
 ![DialogueManagerR](https://user-images.githubusercontent.com/72511237/211634812-3e5d5b8e-b423-49e3-9e63-c789a117f531.PNG)
 
@@ -34,7 +34,7 @@ https://user-images.githubusercontent.com/72511237/211646481-b7fa5b97-a34e-4e3d-
 
 
 
-### Dialogue Trigger <br />
+### Dialogue Trigger
 
 ![DialogueTrigger](https://user-images.githubusercontent.com/72511237/211634918-9666d56d-0444-45ec-9d6b-f1c69b78be2f.PNG)
 
@@ -67,7 +67,7 @@ If you want add custom dialogue at runtime call SetDialogue() func
 Target Dialogue Holder index represent which Dialogue Holder you want to use
 
 
-### GeneralControllers <br />
+### GeneralControllers
 
 ![generalControllers](https://user-images.githubusercontent.com/72511237/211647556-ff01b9b1-db9b-4ec1-b487-3c86b100417b.PNG)
 
@@ -91,12 +91,13 @@ Use **TextEffectController** for custom text effects. I already made a few effec
 Feel free to add more :)
 
 
-## References <br />
+## References
 
 
 For text effect and color ideas. They have been a very useful resource for me.
 
 https://www.youtube.com/watch?v=FgWVW2PL1bQ&list=LL&index=2
+
 https://www.youtube.com/watch?v=FgWVW2PL1bQ&list=LL&index=2
 
 I use generic Singleton class from GitHub that does not belong to me
@@ -104,7 +105,7 @@ When I got the code, I forgot to save the repo, if the person who belongs to it 
 ...
 
 
-## Licanse <br />
+## Licanse
 
 
 
