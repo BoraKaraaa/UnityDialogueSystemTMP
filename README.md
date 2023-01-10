@@ -18,6 +18,7 @@ Assets\Prefabs\DialogueSystem
 ![DialogueSystemPrefab](https://user-images.githubusercontent.com/72511237/211633753-18a8d19b-7468-462a-abaf-38b1e259137a.PNG)
 
 ### Dialogue Manager
+
 ![DialogueManagerR](https://user-images.githubusercontent.com/72511237/211634812-3e5d5b8e-b423-49e3-9e63-c789a117f531.PNG)
 
 Dialogue Holder is a Text Area UI that holds sentences
@@ -25,9 +26,10 @@ You can crate any amount of Dialogue Holder for dialogue in different places
 
 Set Dialogue Holders References in any order (this indices will be important DialogueTrigger Script) in Dialogue Manager
 
-For fast write just call trigger dialogue when one dialogue was running
 
-https://user-images.githubusercontent.com/72511237/211645412-768ee27f-9e6c-467f-9570-ad4fe0cb4803.mp4
+For fast write just call trigger dialogue when one dialogue was running
+https://user-images.githubusercontent.com/72511237/211646297-e9ecdb78-9b8f-46dd-b613-722cf25b3fb5.mp4
+
 
 
 ### Dialogue Trigger
