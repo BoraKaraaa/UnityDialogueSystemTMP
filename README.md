@@ -27,7 +27,8 @@ You can crate any amount of Dialogue Holder for dialogue in different places
 Set Dialogue Holders References in any order (this indices will be important DialogueTrigger Script) in Dialogue Manager
 
 
-For fast write just call trigger dialogue when one dialogue was running
+
+For **fast write** just call trigger dialogue when one dialogue was running
 
 
 https://user-images.githubusercontent.com/72511237/211646481-b7fa5b97-a34e-4e3d-9341-d65022f0c013.mp4
