@@ -117,6 +117,15 @@ Use **TextEffectController** for custom text effects. I already made a few effec
 
 Feel free to add more :)
 
+## Usage Examples
+
+
+https://user-images.githubusercontent.com/72511237/211654815-e4dd91c1-9b3f-46a8-b4b7-a01da9f9c762.mp4
+
+
+https://user-images.githubusercontent.com/72511237/211654849-2f320af6-c40f-437f-8c1d-4babde3dfd59.mp4
+
+
 
 ## References
 
@@ -134,6 +143,6 @@ When I got the code, I forgot to save the repo, if the person who belongs to it 
 ## Licanse
 
 
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
