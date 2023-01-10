@@ -104,7 +104,7 @@ Feel free to add more :)
     public Action HolderOnEndDialogueActions;
 ```
 
-While dialogue is running Subscribe above actions for manipulate objects.. 
+While dialogue is running Subscribe above **DialogueHolder** action's for manipulate objects.. 
 
 
 ## Usage Examples
