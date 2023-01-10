@@ -68,6 +68,23 @@ If you want add custom dialogue at runtime call SetDialogue() func
 
 Target Dialogue Holder index represent which Dialogue Holder you want to use
 
+
+### GeneralControllers
+
+![generalControllers](https://user-images.githubusercontent.com/72511237/211647556-ff01b9b1-db9b-4ec1-b487-3c86b100417b.PNG)
+
+Each general controllers contains dictionary for
+- word -> image
+- word -> color
+- word -> effect mapping
+
+Whole game when specific "word" mentioned custom image, color or effect applied
+
+https://user-images.githubusercontent.com/72511237/211649149-daf030f2-0cc9-4792-bfce-4b17e49c0438.mp4
+
+
+
+
 ## Licanse 
 
 
