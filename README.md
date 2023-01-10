@@ -66,30 +66,8 @@ https://user-images.githubusercontent.com/72511237/211646481-b7fa5b97-a34e-4e3d-
 ![DialogueTrigger](https://user-images.githubusercontent.com/72511237/211634918-9666d56d-0444-45ec-9d6b-f1c69b78be2f.PNG)
 
 Create Dialogue Scriptable Object for your custom dialogues and assign Dialogue List in order
-If you want add custom dialogue at runtime call SetDialogue() func
+If you want add custom dialogue at runtime call SetDialogue() function
 
-```C#
-    /// <summary>
-    ///   <para> Sets the given dialogue order in --dialogueList-- </para>
-    /// </summary>
-    /// <param name="newDialogue"> Dialogue Scriptable Object to be added </param>
-    /// <param name="effectDialogueHolderIndex"> Dialogue Holder (in Dialogue Manager) to be affected </param>
-    /// <param name="addDialogueIndex"> Order in --dialogueList-- </param>
-
-    public void SetDialogue(Dialogue newDialogue, int effectDialogueHolderIndex, int addDialogueIndex = -1)
-    {
-        if (addDialogueIndex == -1)
-        {
-            dialogueList.Insert(dialogueList.Count, newDialogue);
-        }
-        else
-        {
-            dialogueList.Insert(addDialogueIndex, newDialogue);
-        }
-        
-        targetDialogueHolderIndex.Add(effectDialogueHolderIndex);
-    }
-```
 
 Target Dialogue Holder index represent which Dialogue Holder you want to use
 
