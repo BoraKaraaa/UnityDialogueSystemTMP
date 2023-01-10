@@ -35,6 +35,8 @@ And there is another part for specific values for dialogues (working like dictio
 Select specific sentences index and the value you want=
 
 
+
+
 Crate DialogueSystem Prefab from
 ```bash
 Assets\Prefabs\DialogueSystem
