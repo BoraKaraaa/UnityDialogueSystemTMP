@@ -1,4 +1,4 @@
-# Unity-Dialogue-System-TMP
+# Unity Dialogue System TMP
 
 Unity Dialogue System using Text Mesh Pro (TMP) for
 
