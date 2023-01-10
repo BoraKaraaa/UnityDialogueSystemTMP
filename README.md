@@ -17,7 +17,9 @@ Assets\Prefabs\DialogueSystem
 
 ![DialogueSystemPrefab](https://user-images.githubusercontent.com/72511237/211633753-18a8d19b-7468-462a-abaf-38b1e259137a.PNG)
 
+<br />
 ### Dialogue Manager
+<br />
 
 ![DialogueManagerR](https://user-images.githubusercontent.com/72511237/211634812-3e5d5b8e-b423-49e3-9e63-c789a117f531.PNG)
 
@@ -30,14 +32,12 @@ Set Dialogue Holders References in any order (this indices will be important Dia
 
 For **fast write** just call trigger dialogue when one dialogue was running
 
-
 https://user-images.githubusercontent.com/72511237/211646481-b7fa5b97-a34e-4e3d-9341-d65022f0c013.mp4
 
 
-
-
-
+<br />
 ### Dialogue Trigger
+<br />
 ![DialogueTrigger](https://user-images.githubusercontent.com/72511237/211634918-9666d56d-0444-45ec-9d6b-f1c69b78be2f.PNG)
 
 Create Dialogue Scriptable Object for your custom dialogues and assign Dialogue List in order
@@ -68,8 +68,9 @@ If you want add custom dialogue at runtime call SetDialogue() func
 
 Target Dialogue Holder index represent which Dialogue Holder you want to use
 
-
+<br />
 ### GeneralControllers
+<br />
 
 ![generalControllers](https://user-images.githubusercontent.com/72511237/211647556-ff01b9b1-db9b-4ec1-b487-3c86b100417b.PNG)
 
@@ -92,7 +93,9 @@ Use **TextEffectController** for custom text effects. I already made a few effec
 
 Feel free to add more :)
 
+<br />
 ## References
+<br />
 
 For text effect and color ideas. They have been a very useful resource for me.
 
@@ -103,8 +106,9 @@ I use generic Singleton class from GitHub that does not belong to me
 When I got the code, I forgot to save the repo, if the person who belongs to it can reach me, I can add it too :)
 ...
 
+<br />
 ## Licanse 
-
+<br />
 
 
 
