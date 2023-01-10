@@ -117,6 +117,10 @@ Use **TextEffectController** for custom text effects. I already made a few effec
 
 Feel free to add more :)
 
+## Manipulate Dialogues
+
+
+
 ## Usage Examples
 
 
