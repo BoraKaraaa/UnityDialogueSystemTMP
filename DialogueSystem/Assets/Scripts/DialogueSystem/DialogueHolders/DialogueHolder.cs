@@ -150,6 +150,11 @@ public abstract class DialogueHolder : MonoBehaviour
         
         StopTextEffect = true;
         StopChangeColor = true;
+        
+        changeWordColorRoutine = null;
+        changeWordEffectRoutine = null;
+        textEffectRoutine = null;
+        
         HolderOnEndDialogueActions?.Invoke();
     }
     
