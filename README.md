@@ -80,9 +80,17 @@ Each general controllers contains dictionary for
 
 Whole game when specific "word" mentioned custom image, color or effect applied
 
-ex: word -> TMP_Sprite_Asset
+**ex:** "Who" -> TMP_Sprite_Asset
 
 https://user-images.githubusercontent.com/72511237/211649467-77d3e549-4dc4-48af-ae9c-420552f30c5f.mp4
+
+
+Use **TextEffectController** for custom text effects. I already made a few effects like
+- Vibration
+- Glitch
+...
+
+Feel free to include more :)
 
 
 
