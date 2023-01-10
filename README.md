@@ -97,6 +97,14 @@ Feel free to add more :)
 
 ## Manipulate Dialogues
 
+```C#
+    public Action HolderOnStartDialogueActions;
+    public Action<RealDialogue, int> HolderOnCustomDialogueActions;
+    public Action HolderOnOneDialogueEndActions;
+    public Action HolderOnEndDialogueActions;
+```
+
+while dialogue is running Subscribe above actions for manipulate objects.. 
 
 
 ## Usage Examples
