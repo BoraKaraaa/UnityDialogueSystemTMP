@@ -81,7 +81,9 @@ Each general controllers contains dictionary for
 Whole game when specific "word" mentioned custom image, color or effect applied
 
 ex: word -> TMP_Sprite_Asset
-https://user-images.githubusercontent.com/72511237/211649149-daf030f2-0cc9-4792-bfce-4b17e49c0438.mp4
+
+https://user-images.githubusercontent.com/72511237/211649467-77d3e549-4dc4-48af-ae9c-420552f30c5f.mp4
+
 
 
 
