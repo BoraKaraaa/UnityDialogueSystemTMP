@@ -22,11 +22,11 @@ You need to write
 - Sentences
 - Character counts for who belongs to which sentences ( starts with 0 !! )
 - Dialogue Default Values ( Dialogue Default List's lengths need to be equal character count's max index)
-What Dialogue Default Values include
-- Text Write Speeds
-- Text Audios
-- Text Effects
-- Text Colors
+What Dialogue Default Values include:
+    - Text Write Speeds
+    - Text Audios
+    - Text Effects
+    - Text Colors
 
 
 ![dialogueSpecificSO](https://user-images.githubusercontent.com/72511237/211653686-131c880c-dfed-4471-b485-ba2069a18744.PNG)
