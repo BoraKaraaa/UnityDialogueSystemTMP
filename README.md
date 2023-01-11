@@ -2,7 +2,7 @@
 
 Unity Dialogue System using Text Mesh Pro (TMP) for
 
-- Produce quick and easy dialogues
+- Produce quick and simple dialogues
 - Produce text with effects and colors
 
 
