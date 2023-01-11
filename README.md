@@ -5,7 +5,8 @@ Unity Dialogue System using Text Mesh Pro (TMP) for
 - Produce quick and easy dialogues
 - Produce text with effects and colors
 
-https://user-images.githubusercontent.com/72511237/211632477-5a0d6d56-f0d7-4651-ab35-66455ba4236f.mp4
+
+https://user-images.githubusercontent.com/72511237/211737479-f6346f86-a6dc-48b5-ab07-bd28af9af189.mp4
 
 
 ## Usage
@@ -57,7 +58,9 @@ Set Dialogue Holders References in any order (this indices will be important Dia
 
 For **fast write** just call trigger dialogue when one dialogue was running
 
-https://user-images.githubusercontent.com/72511237/211646481-b7fa5b97-a34e-4e3d-9341-d65022f0c013.mp4
+
+https://user-images.githubusercontent.com/72511237/211737562-a9634441-e20b-4d36-a5a8-088f238fcdc7.mp4
+
 
 
 
@@ -110,10 +113,13 @@ While dialogue is running Subscribe above **DialogueHolder** action's for manipu
 ## Usage Examples
 
 
-https://user-images.githubusercontent.com/72511237/211654815-e4dd91c1-9b3f-46a8-b4b7-a01da9f9c762.mp4
+https://user-images.githubusercontent.com/72511237/211737643-d16192f1-c6c5-4e8f-a2f4-4f50b5838357.mp4
 
 
-https://user-images.githubusercontent.com/72511237/211654849-2f320af6-c40f-437f-8c1d-4babde3dfd59.mp4
+
+https://user-images.githubusercontent.com/72511237/211737673-938b2c71-91e7-4d45-a0f1-dce608f0f9a0.mp4
+
+
 
 For our games -> https://hinkirmunkur.itch.io/ 
 
