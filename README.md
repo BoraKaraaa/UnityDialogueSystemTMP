@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/72511237/211737479-f6346f86-a6dc-48b5-
 ### Dialogue Scriptable Objects
 
 ```bash
-Crate\ScriptableObjects\UIDialogueScriptableObject
+Create\ScriptableObjects\UIDialogueScriptableObject
 ```
 
 ![dialogueSO](https://user-images.githubusercontent.com/72511237/211653643-b34e0b7a-bd8d-4e79-b3d8-778a3a8edab2.PNG)
@@ -38,7 +38,7 @@ Select specific sentences index and the value you want
 
 
 
-Crate DialogueSystem Prefab from
+Create DialogueSystem Prefab from
 ```bash
 Assets\Prefabs\DialogueSystem
 ```
@@ -50,7 +50,7 @@ Assets\Prefabs\DialogueSystem
 ![DialogueManagerR](https://user-images.githubusercontent.com/72511237/211634812-3e5d5b8e-b423-49e3-9e63-c789a117f531.PNG)
 
 Dialogue Holder is a Text Area UI that holds sentences
-You can crate any amount of Dialogue Holder for dialogue in different places
+You can create any amount of Dialogue Holder for dialogue in different places
 
 Set Dialogue Holders References in any order (this indices will be important DialogueTrigger Script) in Dialogue Manager
 
