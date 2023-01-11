@@ -130,7 +130,7 @@ For text effect and color ideas. They have been a very useful resource for me.
 
 https://www.youtube.com/watch?v=FgWVW2PL1bQ&list=LL&index=2
 
-https://www.youtube.com/watch?v=FgWVW2PL1bQ&list=LL&index=2
+https://www.youtube.com/watch?v=FXMqUdP3XcE&list=LL&index=3
 
 I use generic Singleton class from GitHub that does not belong to me
 When I got the code, I forgot to save the repo, if the person who belongs to it can reach me, I can add it too :)
