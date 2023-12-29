@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using TMPro;
 
-public class GeneralDialogueEffectController : Singletonn<GeneralDialogueEffectController>
+public class GeneralDialogueEffectController : Singleton<GeneralDialogueEffectController>
 {
     [SerializeField] private List<TextToEffect> textToEffectList;
     
@@ -15,7 +15,9 @@ public class GeneralDialogueEffectController : Singletonn<GeneralDialogueEffectC
     private Coroutine changeWordColorRoutine = null;
 
     private TMP_Text tmpText = null;
-    
+
+    private int resetCounter = 0;
+
     private void Awake()
     {
         foreach (var textToEffect in textToEffectList)
@@ -61,7 +63,7 @@ public class GeneralDialogueEffectController : Singletonn<GeneralDialogueEffectC
                 foreach (var textIndexPair in wordToEffectList)
                 {
                     TextEffectsController.Instance.DoTextEffect(tmpText, textIndexPair.textIndex, 
-                        wordToEffectDictionary[textIndexPair.textKey].wordEffect);
+                        wordToEffectDictionary[textIndexPair.textKey].wordEffect, ETextEffectTimeVariable.SCALED, ++resetCounter);
                 }
             }
 

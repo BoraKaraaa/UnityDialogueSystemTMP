@@ -40,7 +40,7 @@ public abstract class Dialogue : ScriptableObject
     [Header("DIALOGUE SPECIFIC VALUES")]
     [Space(10)]
     public List<TextWriteSpeedDic> textWriteSpeeds;
-    public List<AudioClipDic> textAudios;
+    public List<SoundEffectSODic> textAudios;
     public List<ETextEffectsDic> textEffects;
     public List<OverWriteDic> overWrites;
     public List<DiffColorDic> diffColor;

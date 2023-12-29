@@ -4,56 +4,53 @@ public class UISimpDialogueHolder : DialogueHolder
 {
     [Space(10)]
     [Header("UISimpDialogueHolder Parameters")]
-    [SerializeField] private Animator dialogueAnimator;
+    [SerializeField] private Animator _dialogueAnimator;
 
-    private RealUISimpDialogue realUISimpDialogue = null;
-    private UISimpDialogue uiSimpDialogue = null;
+    private RealUISimpDialogue _realUISimpDialogue = null;
+    private UISimpDialogue _uiSimpDialogue = null;
     
-    protected override void InitReferences(ref RealDialogue realDialogue)
-    {
-        realDialogue = realUISimpDialogue;
-    }
-
+    
     protected override void OnStartDialogueActions(Dialogue dialogue)
     {
-        realUISimpDialogue = new RealUISimpDialogue();
+        _realUISimpDialogue = new RealUISimpDialogue();
         
-        realUISimpDialogue.Init(dialogue);
+        _realUISimpDialogue.Init(dialogue);
         
-        uiSimpDialogue = dialogue as UISimpDialogue;
+        _uiSimpDialogue = dialogue as UISimpDialogue;
         
         base.OnStartDialogueActions(dialogue);
     }
     
-    protected override void SetDefaultValues(int index)
+    protected override void SetDefaultValues(Dialogue uiSimpDialogue, RealDialogue realUISimpDialogue, int index)
     {
-        base.SetDefaultValues(index);
+        base.SetDefaultValues(_uiSimpDialogue, _realUISimpDialogue, index);
         
-        realUISimpDialogue.SetCustomAnimatorStateName(index, 
-            uiSimpDialogue.defAnimatorStateNames[uiSimpDialogue.characterCounts[index]]);
+        _realUISimpDialogue.SetCustomAnimatorStateName(index, 
+            _uiSimpDialogue.defAnimatorStateNames[_uiSimpDialogue.characterCounts[index]]);
     }
 
-    protected override void ControlCustomValues(int index)
+    protected override void ControlCustomValues(Dialogue uiSimpDialogue, RealDialogue realUISimpDialogue, int index)
     {
-        base.ControlCustomValues(index);
+        base.ControlCustomValues(_uiSimpDialogue, _realUISimpDialogue, index);
         
-        if (index < uiSimpDialogue.animatorStateNames.Count)  
-            realUISimpDialogue.SetCustomAnimatorStateName(uiSimpDialogue.animatorStateNames[index].id, uiSimpDialogue.animatorStateNames[index].animationStateName);
+        if (index < _uiSimpDialogue.animatorStateNames.Count)  
+            _realUISimpDialogue.SetCustomAnimatorStateName(_uiSimpDialogue.animatorStateNames[index].id, 
+                _uiSimpDialogue.animatorStateNames[index].animationStateName);
     }
 
-    protected override RealDialogue OnCustomDialogueActions(int index)
+    protected override RealDialogue OnCustomDialogueActions(RealDialogue realUISimpDialogue, int index)
     {
-        SetDefaultValues(index);
-        ControlCustomValues(index);
+        SetDefaultValues(_uiSimpDialogue, _realUISimpDialogue, index);
+        ControlCustomValues(_uiSimpDialogue, _realUISimpDialogue, index);
         
-        HolderOnCustomDialogueActions?.Invoke(realUISimpDialogue, index);
+        HolderOnCustomDialogueActions?.Invoke(_realUISimpDialogue, index);
 
-        base.OnCustomDialogueActions(index);
+        base.OnCustomDialogueActions(_realUISimpDialogue, index);
 
-        dialogueAnimator.runtimeAnimatorController = uiSimpDialogue.animators[uiSimpDialogue.characterCounts[index]];
-        dialogueAnimator.Play(realUISimpDialogue.animatorStateNames[index]);
+        _dialogueAnimator.runtimeAnimatorController = _uiSimpDialogue.animators[_uiSimpDialogue.characterCounts[index]];
+        _dialogueAnimator.Play(_realUISimpDialogue.animatorStateNames[index]);
 
-        return realUISimpDialogue;
+        return _realUISimpDialogue;
     }
 
     protected override void OnOneDialogueEndActions()

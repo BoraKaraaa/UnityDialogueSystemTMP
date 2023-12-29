@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Singletonn<T> : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour
     where T : Component
 {
     private static T _instance;
@@ -24,7 +24,7 @@ public abstract class Singletonn<T> : MonoBehaviour
     }
 }
 
-public abstract class SingletonnPersistent<T> : MonoBehaviour
+public abstract class SingletonPersistent<T> : MonoBehaviour
     where T : Component
 {
     public static T Instance { get; private set; }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7735494387387486988}
-  - component: {fileID: 1411226229084875044}
+  - component: {fileID: 893079563}
   m_Layer: 0
   m_Name: GeneralDialogueEffectController
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 9089413450855983957}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1411226229084875044
+--- !u!114 &893079563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1032702217553787996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8b9093ba79a6b49a44cb5f92973d3a, type: 3}
+  m_Script: {fileID: 11500000, guid: e49f0960794b2c241b39e7e3d6b9481a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textToEffectList: []
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6474822181973999633}
-  - component: {fileID: 636463383121794662}
+  - component: {fileID: 865941872}
   m_Layer: 0
   m_Name: GeneralDialogueImageController
   m_TagString: Untagged
@@ -77,7 +77,7 @@ Transform:
   m_Father: {fileID: 9089413450855983957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &636463383121794662
+--- !u!114 &865941872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1256771484935131784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d19f8b20898d0a4dac80fda3e766579, type: 3}
+  m_Script: {fileID: 11500000, guid: c0183c0375a276041bdcef82c3e7169f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textToSpriteList: []
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147246938259948891}
-  - component: {fileID: 5697973274443581254}
+  - component: {fileID: 1669478830}
   m_Layer: 0
   m_Name: TextColorController
   m_TagString: Untagged
@@ -122,7 +122,7 @@ Transform:
   m_Father: {fileID: 322473275168702302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5697973274443581254
+--- !u!114 &1669478830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4060364530266318341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b9f119fc3e173e459748ce4edb88e01, type: 3}
+  m_Script: {fileID: 11500000, guid: 31f596c1196fd194dbcf426ff860757f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5631226504679127847
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631226504679127846}
-  - component: {fileID: 5631226504679127845}
+  - component: {fileID: 884899315}
   m_Layer: 0
   m_Name: TextEffectsController
   m_TagString: Untagged
@@ -166,7 +166,7 @@ Transform:
   m_Father: {fileID: 322473275168702302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5631226504679127845
+--- !u!114 &884899315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,51 +175,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5631226504679127847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39fd693b12d429e42b50037cb7f45d41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &5631226505102684544
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5631226505102684551}
-  - component: {fileID: 5631226505102684550}
-  m_Layer: 0
-  m_Name: UnScaledTextEffectsController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5631226505102684551
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5631226505102684544}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 322473275168702302}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5631226505102684550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5631226505102684544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77ba1f70117724787321b8f39732ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dac24628f036a047b303ae5c6eb05af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5631226505765144481
@@ -231,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631226505765144480}
-  - component: {fileID: 5631226505765144487}
+  - component: {fileID: 865941870}
   m_Layer: 0
   m_Name: DialogueTrigger
   m_TagString: Untagged
@@ -254,7 +210,7 @@ Transform:
   m_Father: {fileID: 5631226505947165855}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5631226505765144487
+--- !u!114 &865941870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,14 +219,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5631226505765144481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af4275828e8962542945256f85557064, type: 3}
+  m_Script: {fileID: 11500000, guid: 191e6f8b2bd38bf4fb5365dce717d674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueList:
-  - {fileID: 11400000, guid: 7edab701f94162a4e9846e1e27abb4a3, type: 2}
-  - {fileID: 11400000, guid: 06b6cd906c09e524799eeb1cd5bf44b6, type: 2}
-  - {fileID: 11400000, guid: 6c64e7e2e987d1347b8ed45b065ef197, type: 2}
-  targetDialogueHolderIndex: 000000000100000002000000
+  dialogueList: []
+  targetDialogueHolderIndex: 
 --- !u!1 &5631226505947165848
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631226506071367289}
-  - component: {fileID: 5631226506071367288}
+  - component: {fileID: 865941868}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -338,7 +291,7 @@ Transform:
   m_Father: {fileID: 5631226505947165855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5631226506071367288
+--- !u!114 &865941868
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -347,7 +300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5631226506071367290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d4f12dedeb01144b0d593835bd5f27, type: 3}
+  m_Script: {fileID: 11500000, guid: 2057f16503950ff45be022fd5cd1d6aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueHolders:
@@ -355,6 +308,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fastWriteSpeed: 0.04
+  isGeneralDialogueColorEnabled: 0
+  isGeneralDialogueImageEnabled: 0
+  isGeneralDialogueEffectEnabled: 0
 --- !u!1 &7078684606000384379
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3875651388383071353}
-  - component: {fileID: 1745915959899261921}
+  - component: {fileID: 1322576584}
   m_Layer: 0
   m_Name: GeneralDialogueColorController
   m_TagString: Untagged
@@ -387,7 +343,7 @@ Transform:
   m_Father: {fileID: 9089413450855983957}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1745915959899261921
+--- !u!114 &1322576584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,7 +352,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7078684606000384379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9da5d508d1c49247a9c0876aa526c8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1003b369d2bfc9649910f1ab46b1b60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textToColorList: []
@@ -464,7 +420,6 @@ Transform:
   m_Children:
   - {fileID: 4147246938259948891}
   - {fileID: 5631226504679127846}
-  - {fileID: 5631226505102684551}
   m_Father: {fileID: 5631226505947165855}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

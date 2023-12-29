@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GeneralDialogueImageController : Singletonn<GeneralDialogueImageController>
+public class GeneralDialogueImageController : Singleton<GeneralDialogueImageController>
 {
     [SerializeField] private List<TextToSprite> textToSpriteList;
 

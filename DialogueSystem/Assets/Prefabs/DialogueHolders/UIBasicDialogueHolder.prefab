@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8983521619020900237}
-  - component: {fileID: 8983521619020900236}
+  - component: {fileID: 8927834119731525637}
   m_Layer: 5
   m_Name: UIBasicDialogueHolder
   m_TagString: Untagged
@@ -174,7 +174,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8983521619020900236
+--- !u!114 &8927834119731525637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,11 +183,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8983521619020900238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abee4488b5ba7340bd3338eb4c62cb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a36cb84db6650d4ca0c3395b0d973ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueHolderText: {fileID: 8983521618998989892}
-  audioSource: {fileID: 8983521619697231500}
+  soundEffect: {fileID: 8983521619697231500}
   dialogueEnd: 1
   dialogueStopGame: 0
   dialogueHolderAnimator: {fileID: 0}

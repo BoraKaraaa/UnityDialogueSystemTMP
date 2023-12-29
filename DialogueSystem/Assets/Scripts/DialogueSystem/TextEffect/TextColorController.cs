@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class TextColorController : Singletonn<TextColorController>
+public class TextColorController : Singleton<TextColorController>
 {
     public void ChangeWordColor(TMP_Text dialogueHolderText, int wordColorIndex, Color color)
     {
@@ -26,7 +26,6 @@ public class TextColorController : Singletonn<TextColorController>
         }
 
         dialogueHolderText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
-
     }
     
     public void ChangeWholeColor(TMP_Text dialogueHolderText, Color color)

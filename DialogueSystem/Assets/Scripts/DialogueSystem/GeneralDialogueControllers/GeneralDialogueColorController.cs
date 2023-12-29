@@ -1,10 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.Collections;
 using UnityEngine;
+using System;
+using TMPro;
 
-public class GeneralDialogueColorController : Singletonn<GeneralDialogueColorController>
+public class GeneralDialogueColorController : Singleton<GeneralDialogueColorController>
 {
     [SerializeField] private List<TextToColor> textToColorList;
 

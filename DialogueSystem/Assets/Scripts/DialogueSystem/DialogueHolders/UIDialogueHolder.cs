@@ -5,67 +5,62 @@ public class UIDialogueHolder : DialogueHolder
 {
     [Space(10)]
     [Header("UIDialogueHolder Parameters")]
-    [SerializeField] private Image dialogueHolderImage;
-    [SerializeField] private Animator dialogueAnimator;
+    [SerializeField] private Image _dialogueHolderImage; 
+    [SerializeField] private Animator _dialogueAnimator;
 
-    private RealUIDialogue realUIDialogue = null;
-    private UIDialogue uiDialogue = null;
-
-    protected override void InitReferences(ref RealDialogue realDialogue)
-    {
-        realDialogue = realUIDialogue;
-    }
+    private RealUIDialogue _realUIDialogue = null;
+    private UIDialogue _uiDialogue = null;
 
     protected override void OnStartDialogueActions(Dialogue dialogue)
     {
-        realUIDialogue = new RealUIDialogue();
+        _realUIDialogue = new RealUIDialogue();
         
-        realUIDialogue.Init(dialogue);
+        _realUIDialogue.Init(dialogue);
         
-        uiDialogue = dialogue as UIDialogue;
+        _uiDialogue = dialogue as UIDialogue;
         
         base.OnStartDialogueActions(dialogue);
     }
 
-    protected override void SetDefaultValues(int index)
+    protected override void SetDefaultValues(Dialogue uiDialogue, RealDialogue realUIDialogue, int index)
     {
-        base.SetDefaultValues(index);
+        base.SetDefaultValues(_uiDialogue, _realUIDialogue, index);
         
-        realUIDialogue.SetCustomAnimatorStateName(index, 
-            uiDialogue.defAnimatorStateNames[uiDialogue.characterCounts[index]]);
+        _realUIDialogue.SetCustomAnimatorStateName(index, 
+            _uiDialogue.defAnimatorStateNames[_uiDialogue.characterCounts[index]]);
     }
 
-    protected override void ControlCustomValues(int index)
+    protected override void ControlCustomValues(Dialogue uiDialogue, RealDialogue realUIDialogue, int index)
     {
-        base.ControlCustomValues(index);
+        base.ControlCustomValues(_uiDialogue, _realUIDialogue, index);
         
-        if (index < uiDialogue.animatorStateNames.Count)
+        if (index < _uiDialogue.animatorStateNames.Count)
         {
-            realUIDialogue.SetCustomAnimatorStateName(uiDialogue.animatorStateNames[index].id, 
-                uiDialogue.animatorStateNames[index].animationStateName);
+            _realUIDialogue.SetCustomAnimatorStateName(_uiDialogue.animatorStateNames[index].id, 
+                _uiDialogue.animatorStateNames[index].animationStateName);
         }
     }
 
-    protected override RealDialogue OnCustomDialogueActions(int index)
+    protected override RealDialogue OnCustomDialogueActions(RealDialogue realUIDialogue, int index)
     {
-        SetDefaultValues(index);
-        ControlCustomValues(index);
+        SetDefaultValues(_uiDialogue, _realUIDialogue, index);
+        ControlCustomValues(_uiDialogue, _realUIDialogue, index);
         
-        HolderOnCustomDialogueActions?.Invoke(realUIDialogue, index); 
+        HolderOnCustomDialogueActions?.Invoke(_realUIDialogue, index); 
         
-        base.OnCustomDialogueActions(index);
+        base.OnCustomDialogueActions(_realUIDialogue, index);
         
-        dialogueHolderImage.sprite = uiDialogue.sprites[uiDialogue.characterCounts[index]];
-        dialogueAnimator.runtimeAnimatorController = uiDialogue.animators[uiDialogue.characterCounts[index]];
+        _dialogueHolderImage.sprite = _uiDialogue.sprites[_uiDialogue.characterCounts[index]];
+        _dialogueAnimator.runtimeAnimatorController = _uiDialogue.animators[_uiDialogue.characterCounts[index]];
 
-        dialogueAnimator.Play(realUIDialogue.animatorStateNames[index]);
+        _dialogueAnimator.Play(_realUIDialogue.animatorStateNames[index]);
 
-        return realUIDialogue;
+        return _realUIDialogue;
     }
 
     protected override void OnOneDialogueEndActions()
     {
-        dialogueAnimator.Play("NotTalking");
+        _dialogueAnimator.Play("NotTalking");
         HolderOnOneDialogueEndActions?.Invoke();
     }
 

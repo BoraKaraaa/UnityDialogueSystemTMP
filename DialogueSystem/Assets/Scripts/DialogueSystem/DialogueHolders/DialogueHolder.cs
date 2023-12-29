@@ -1,12 +1,14 @@
-using UnityEngine;
-using TMPro;
-using System;
 using System.Collections;
+using UnityEngine;
+using System;
+using System.Collections.Generic;
+using TMPro;
+using Munkur;
 
 public abstract class DialogueHolder : MonoBehaviour
 {
     public TMP_Text dialogueHolderText;
-    public AudioSource audioSource;
+    public AudioSource soundEffect;
     public EDialogueEnd dialogueEnd;
 
     [SerializeField] private bool dialogueStopGame;
@@ -31,13 +33,12 @@ public abstract class DialogueHolder : MonoBehaviour
     protected bool StopTextEffect { get; set; } = false;
     protected bool StopChangeColor { get; set; } = false;
 
-    private RealDialogue realDialogue = null;
-    private Dialogue dialogue = null;
-
     private Coroutine textEffectRoutine = null;
     private Coroutine changeWordColorRoutine = null;
     private Coroutine changeWordEffectRoutine = null;
-    
+
+    private int resetCounter = 0;
+
     /// <summary>
     ///   <para> Subscribe Dialogue Manager Actions
     ///             Called by Dialogue Manager When this --DialogueHolder-- active </para>
@@ -73,8 +74,7 @@ public abstract class DialogueHolder : MonoBehaviour
     protected void SetEtextEffects(ETextEffects textEffect) => this.textEffect = textEffect;
     protected void SetWordColorIndex(WordColorIndex wordColorIndex) => this.wordColorIndex = wordColorIndex;
     protected void SetWordEffectIndex(WordEffectIdnex wordEffectIdnex) => this.wordEffectIdnex = wordEffectIdnex;
-    protected abstract void InitReferences(ref RealDialogue realDialogue);
-    
+
     protected virtual void OnStartDialogueActions(Dialogue dialogue)
     {
         if (DialogueStopGame)
@@ -83,10 +83,6 @@ public abstract class DialogueHolder : MonoBehaviour
             Time.timeScale = 0f;
         }
 
-        this.dialogue = dialogue;
-
-        InitReferences(ref realDialogue);
-        
         this.gameObject.SetActive(true);
         
         StopTextEffect = false;
@@ -100,7 +96,7 @@ public abstract class DialogueHolder : MonoBehaviour
         HolderOnStartDialogueActions?.Invoke();
     }
 
-    protected virtual RealDialogue OnCustomDialogueActions(int index)
+    protected virtual RealDialogue OnCustomDialogueActions(RealDialogue realDialogue, int index)
     {
         TextColorController.Instance.ChangeWholeColor(dialogueHolderText, 
             realDialogue.diffColor[index]);
@@ -162,7 +158,7 @@ public abstract class DialogueHolder : MonoBehaviour
     ///   <para> Sets the dialogue Scriptable Object's default values to realDialogue </para>
     /// <param name="index"> Corresponding sentences index </param>
     /// </summary>
-    protected virtual void SetDefaultValues(int index)
+    protected virtual void SetDefaultValues(Dialogue dialogue, RealDialogue realDialogue, int index)
     {
         realDialogue.SetText(index, dialogue.sentences[index]); //Set Texts
 
@@ -177,7 +173,7 @@ public abstract class DialogueHolder : MonoBehaviour
     ///   <para> Sets the dialogue Scriptable Object's custom values to realDialogue </para>
     /// <param name="index"> Corresponding sentences index </param>
     /// </summary>
-    protected virtual void ControlCustomValues(int index)
+    protected virtual void ControlCustomValues(Dialogue dialogue, RealDialogue realDialogue, int index)
     {
         if (index < dialogue.textWriteSpeeds.Count)
         {
@@ -262,7 +258,7 @@ public abstract class DialogueHolder : MonoBehaviour
                 yield break;
             }
 
-            TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect);
+            TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect, ETextEffectTimeVariable.SCALED, ++resetCounter);
 
             yield return null;
         }
@@ -282,7 +278,7 @@ public abstract class DialogueHolder : MonoBehaviour
                 foreach (int wordIndex in wordEffectIdnex.diffWordEffectDics[i].wordId)
                 {
                     TextEffectsController.Instance.DoTextEffect(dialogueHolderText, wordIndex, 
-                        wordEffectIdnex.diffWordEffectDics[i].textEffect);
+                        wordEffectIdnex.diffWordEffectDics[i].textEffect, ETextEffectTimeVariable.SCALED, ++resetCounter);
                 }
             }
 
@@ -300,7 +296,7 @@ public abstract class DialogueHolder : MonoBehaviour
                 yield break;
             }
             
-            UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, textEffect);
+            TextEffectsController.Instance.DoTextEffect(dialogueHolderText, textEffect, ETextEffectTimeVariable.UNSCALED, ++resetCounter);
 
             yield return null;
         }
@@ -319,8 +315,8 @@ public abstract class DialogueHolder : MonoBehaviour
             {
                 foreach (int wordIndex in wordEffectIdnex.diffWordEffectDics[i].wordId)
                 {
-                    UnScaledTextEffectController.Instance.DoTextEffect(dialogueHolderText, wordIndex, 
-                        wordEffectIdnex.diffWordEffectDics[i].textEffect);
+                    TextEffectsController.Instance.DoTextEffect(dialogueHolderText, wordIndex, 
+                        wordEffectIdnex.diffWordEffectDics[i].textEffect, ETextEffectTimeVariable.UNSCALED, ++resetCounter);
                 }
             }
 

@@ -2,35 +2,30 @@ using UnityEngine;
 
 public class UIBasicDialogueHolder : DialogueHolder
 {
-    private RealUIBasicDialogue realUIBasicDialogue = null;
-    private UIBasicDialogue uiBasicDialogue = null;
-    
-    protected override void InitReferences(ref RealDialogue realDialogue)
-    {
-        realDialogue = realUIBasicDialogue;
-    }
-    
+    private RealUIBasicDialogue _realUIBasicDialogue = null;
+    private UIBasicDialogue _uiBasicDialogue = null;
+
     protected override void OnStartDialogueActions(Dialogue dialogue)
     {
-        realUIBasicDialogue = new RealUIBasicDialogue();
+        _realUIBasicDialogue = new RealUIBasicDialogue();
         
-        realUIBasicDialogue.Init(dialogue);
+        _realUIBasicDialogue.Init(dialogue);
         
-        uiBasicDialogue = dialogue as UIBasicDialogue;
+        _uiBasicDialogue = dialogue as UIBasicDialogue;
         
         base.OnStartDialogueActions(dialogue);
     }
 
-    protected override RealDialogue OnCustomDialogueActions(int index)
+    protected override RealDialogue OnCustomDialogueActions(RealDialogue realUIBasicDialogue, int index)
     {
-        SetDefaultValues(index);
-        ControlCustomValues(index);
+        SetDefaultValues(_uiBasicDialogue, _realUIBasicDialogue, index);
+        ControlCustomValues(_uiBasicDialogue, _realUIBasicDialogue, index);
         
-        HolderOnCustomDialogueActions?.Invoke(realUIBasicDialogue, index);
+        HolderOnCustomDialogueActions?.Invoke(_realUIBasicDialogue, index);
 
-        base.OnCustomDialogueActions(index);
+        base.OnCustomDialogueActions(_realUIBasicDialogue, index);
 
-        return realUIBasicDialogue;
+        return _realUIBasicDialogue;
     }
 
     protected override void OnOneDialogueEndActions()
@@ -42,8 +37,4 @@ public class UIBasicDialogueHolder : DialogueHolder
     {
         base.OnEndDialogueActions();
     }
-    
-    
-    
-
 }

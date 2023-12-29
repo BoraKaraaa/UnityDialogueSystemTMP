@@ -19,7 +19,7 @@ public class TextWriteSpeedDic {
 }
 
 [System.Serializable]
-public class AudioClipDic {
+public class SoundEffectSODic {
     public int id;
     public AudioClip textAudio;
 }

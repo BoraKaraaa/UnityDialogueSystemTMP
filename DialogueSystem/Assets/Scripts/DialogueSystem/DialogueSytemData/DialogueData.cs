@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DialogueData : SingletonnPersistent<DialogueData>
+public class DialogueData : SingletonPersistent<DialogueData>
 {
 
     private const string currDialogueIndex = "CURR_DIALOGUE_INDEX";
